@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MahiiVerse — Technology. Design. Solutions.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animatelo/1.0.3/animatelo.min.js"></script>
+  <style>
+    :root {
+      --or: #FF4D00;
+      --orl: #FF7240;
+      --org: rgba(255, 77, 0, .08);
+      --bg: #080808;
+      --bg2: #0d0d0d;
+      --bg3: #131313;
+      --bg4: #1a1a1a;
+      --wh: #EDEAE4;
+      --wh2: #a0998f;
+      --wh3: #5a5550;
+      --bd: rgba(255, 77, 0, .12);
+      --bdw: rgba(237, 234, 228, .06);
+      --px: clamp(28px, 6vw, 108px);
+      --nav-h: 64px;
+      --ease: cubic-bezier(.16, 1, .3, 1)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--wh);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    #cur,
+    #cur2 {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%)
+    }
+
+    #cur {
+      width: 8px;
+      height: 8px;
+      background: var(--or);
+      transition: width .15s, height .15s
+    }
+
+    #cur2 {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255, 77, 0, .45);
+      transition: width .18s, height .18s
+    }
+
+    body.hov #cur {
+      width: 16px;
+      height: 16px
+    }
+
+    body.hov #cur2 {
+      width: 48px;
+      height: 48px;
+      border-color: rgba(255, 77, 0, .7)
+    }
+
+    #grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: .28;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 5000;
+      height: var(--nav-h);
+      padding: 0 var(--px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0px solid var(--bdw);
+      backdrop-filter: blur(32px);
+      background: rgba(8, 8, 8, .92)
+    }
+
+    .nav-logo {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      transition: opacity .2s
+    }
+
+    .nav-logo:hover {
+      opacity: .8
+    }
+
+    .nav-logo img {
+      height: 100%;
+      width: auto;
+      display: block
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .nl {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--wh2);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color .2s;
+      position: relative
+    }
+
+    .nl:hover {
+      color: var(--wh)
+    }
+
+    .nl.on {
+      color: var(--wh)
+    }
+
+    .nl.on::before {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 14px;
+      right: 14px;
+      height: 1px;
+      background: var(--or)
+    }
+
+    .nav-cta {
+      padding: 9px 20px;
+      border: 1px solid var(--or);
+      color: var(--or);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      transition: all .25s;
+      margin-left: 8px
+    }
+
+    .nav-cta:hover {
+      background: var(--or);
+      color: var(--bg)
+    }
+
+    /* MARQUEE */
+    .mq-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--bdw);
+      border-bottom: 1px solid var(--bdw);
+      padding: 11px 0;
+      background: var(--bg2)
+    }
+
+    .mq-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: mqScroll 28s linear infinite
+    }
+
+    .mq-inner span {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wh3);
+      padding: 0 22px
+    }
+
+    .mq-inner .sep {
+      color: var(--or);
+      opacity: .6;
+      padding: 0 2px
+    }
+
+    @keyframes mqScroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* REVEAL */
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .rv-l {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .rv-l.in {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .rv-r {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .rv-r.in {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .stagger>* {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease)
+    }
+
+    .stagger.in>* {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .stagger.in>*:nth-child(1) {
+      transition-delay: .05s
+    }
+
+    .stagger.in>*:nth-child(2) {
+      transition-delay: .15s
+    }
+
+    .stagger.in>*:nth-child(3) {
+      transition-delay: .25s
+    }
+
+    .stagger.in>*:nth-child(4) {
+      transition-delay: .35s
+    }
+
+    .stagger.in>*:nth-child(5) {
+      transition-delay: .45s
+    }
+
+    .stagger.in>*:nth-child(6) {
+      transition-delay: .55s
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block
+    }
+
+    .split-line .word {
+      display: inline-block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform .8s var(--ease), opacity .8s var(--ease)
+    }
+
+    .split-line.in .word {
+      transform: translateY(0);
+      opacity: 1
+    }
+
+    .split-line.in .word:nth-child(1) {
+      transition-delay: .0s
+    }
+
+    .split-line.in .word:nth-child(2) {
+      transition-delay: .08s
+    }
+
+    .split-line.in .word:nth-child(3) {
+      transition-delay: .16s
+    }
+
+    .split-line.in .word:nth-child(4) {
+      transition-delay: .24s
+    }
+
+    /* BUTTONS */
+    .btn-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--or);
+      color: var(--bg);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none
+    }
+
+    .btn-p::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .18);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--ease)
+    }
+
+    .btn-p:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 77, 0, .28)
+    }
+
+    .btn-p:hover::after {
+      transform: scaleX(1)
+    }
+
+    .btn-o {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: transparent;
+      color: var(--wh);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid var(--bdw);
+      transition: all .25s;
+      text-decoration: none
+    }
+
+    .btn-o:hover {
+      border-color: rgba(255, 77, 0, .5);
+      color: var(--or)
+    }
+
+    /* LAYOUT */
+    .sec {
+      padding: 110px var(--px)
+    }
+
+    .sec-sm {
+      padding: 72px var(--px)
+    }
+
+    .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px
+    }
+
+    .label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--or)
+    }
+
+    .display {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: -1px;
+      line-height: .9
+    }
+
+    .d1 {
+      font-size: clamp(64px, 8.5vw, 132px)
+    }
+
+    .d2 {
+      font-size: clamp(52px, 7.5vw, 112px)
+    }
+
+    .d3 {
+      font-size: clamp(36px, 5vw, 72px)
+    }
+
+    .or {
+      color: var(--or)
+    }
+
+    .ol {
+      -webkit-text-stroke: 1.5px var(--or);
+      color: transparent
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(255, 77, 0, .07) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 20% 80%, rgba(255, 77, 0, .04) 0%, transparent 60%);
+      pointer-events: none
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--bdw) 1px, transparent 1px), linear-gradient(90deg, var(--bdw) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: .35;
+      pointer-events: none
+    }
+
+    .hero-scan {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 77, 0, .6), transparent);
+      animation: scan 4s ease-in-out infinite;
+      pointer-events: none
+    }
+
+    @keyframes scan {
+      0% {
+        top: 0;
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      90% {
+        opacity: 1
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 40px var(--px) 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      pointer-events: none;
+    }
+
+    .hero-text-content {
+      flex: 1.2;
+      min-width: 320px;
+      pointer-events: none;
+    }
+
+
+    .hero-text-content a,
+    .hero-text-content button {
+      pointer-events: auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--bdw);
+      padding: 7px 16px;
+      margin-bottom: 36px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wh3)
+    }
+
+    .hero-tag .live {
+      width: 6px;
+      height: 6px;
+      background: var(--or);
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .3;
+        transform: scale(.8)
+      }
+    }
+
+    .hero-title-wrap {
+      margin-bottom: 40px;
+      max-width: 1200px
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.4vw, 18px);
+      color: var(--wh2);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 48px;
+      font-weight: 400
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 72px
+    }
+
+    .hero-stat-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--bdw);
+      padding-top: 40px
+    }
+
+    .hsr {
+      flex: 1;
+      padding-right: 40px;
+      border-right: 1px solid var(--bdw)
+    }
+
+    .hsr:last-child {
+      border-right: none;
+      padding-left: 40px;
+      padding-right: 0
+    }
+
+    .hsr:first-child {
+      padding-left: 0
+    }
+
+    .hsr-n {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--or);
+      line-height: 1;
+      margin-bottom: 4px
+    }
+
+    .hsr-l {
+      font-size: 11px;
+      color: var(--wh3);
+      letter-spacing: 1px;
+      line-height: 1.5
+    }
+
+    /* TRUST */
+    .trust {
+      padding: 28px var(--px);
+      background: var(--bg2);
+      border-bottom: 1px solid var(--bdw);
+      display: flex;
+      align-items: center;
+      gap: 52px;
+      flex-wrap: wrap
+    }
+
+    .trust-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wh3)
+    }
+
+    .trust-names {
+      display: flex;
+      gap: 44px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .trust-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--wh3);
+      transition: color .2s;
+      cursor: default
+    }
+
+    .trust-name:hover {
+      color: var(--wh)
+    }
+
+    /* CAPABILITIES */
+    .cap-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start
+    }
+
+    .cap-sticky {
+      position: sticky;
+      top: calc(var(--nav-h) + 40px)
+    }
+
+    .cap-desc {
+      font-size: 15px;
+      color: var(--wh2);
+      line-height: 1.85;
+      margin-top: 24px;
+      max-width: 340px
+    }
+
+    .cap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .cap-item {
+      display: grid;
+      grid-template-columns: 64px 1fr 1fr;
+      align-items: start;
+      gap: 32px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--bdw);
+      transition: padding-left .35s var(--ease);
+      cursor: pointer
+    }
+
+    .cap-item:first-child {
+      border-top: 1px solid var(--bdw)
+    }
+
+    .cap-item:hover {
+      padding-left: 12px
+    }
+
+    .cap-item:hover .cap-name {
+      color: var(--or)
+    }
+
+    .cap-item:hover .cap-arr {
+      color: var(--or);
+      transform: translate(3px, -3px)
+    }
+
+    .cap-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--or);
+      letter-spacing: 2px;
+      padding-top: 6px
+    }
+
+    .cap-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px, 2.5vw, 36px);
+      letter-spacing: .5px;
+      transition: color .3s;
+      line-height: 1.05
+    }
+
+    .cap-name small {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--wh3);
+      margin-top: 8px
+    }
+
+    .cap-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 8px
+    }
+
+    .ctag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--wh3);
+      border: 1px solid var(--bdw);
+      padding: 4px 10px
+    }
+
+    .cap-arr {
+      font-size: 18px;
+      color: var(--wh3);
+      transition: all .3s;
+      align-self: center;
+      justify-self: end
+    }
+
+    /* FEAT BAND */
+    .feat-band {
+      padding: 120px var(--px);
+      background: var(--bg2);
+      border-top: 1px solid var(--bdw);
+      border-bottom: 1px solid var(--bdw);
+      position: relative;
+      overflow: hidden;
+      text-align: center
+    }
+
+    .feat-band-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(255, 77, 0, .06) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .feat-band-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--bdw) 1px, transparent 1px), linear-gradient(90deg, var(--bdw) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: .25;
+      pointer-events: none
+    }
+
+    .feat-band-inner {
+      position: relative;
+      z-index: 1
+    }
+
+    .feat-band .d2 {
+      max-width: 960px;
+      margin: 0 auto 28px
+    }
+
+    .feat-tag-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 44px
+    }
+
+    .feat-tag {
+      padding: 8px 18px;
+      border: 1px solid var(--bd);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--wh2);
+      transition: all .3s;
+      cursor: default
+    }
+
+    .feat-tag:hover {
+      border-color: var(--or);
+      color: var(--or)
+    }
+
+    /* PROCESS */
+    .proc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .proc-ill svg {
+      width: 100%
+    }
+
+    .ps {
+      display: flex;
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--bdw);
+      transition: padding-left .3s var(--ease)
+    }
+
+    .ps:first-child {
+      border-top: 1px solid var(--bdw)
+    }
+
+    .ps:hover {
+      padding-left: 10px
+    }
+
+    .ps-n {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 77, 0, .3);
+      line-height: 1;
+      min-width: 52px
+    }
+
+    .ps-body h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      transition: color .3s
+    }
+
+    .ps:hover .ps-body h4 {
+      color: var(--or)
+    }
+
+    .ps-body p {
+      font-size: 13px;
+      color: var(--wh2);
+      line-height: 1.75
+    }
+
+    /* AI */
+    .ai-sec {
+      padding: 120px var(--px);
+      position: relative;
+      overflow: hidden
+    }
+
+    .ai-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--bdw) 1px, transparent 1px), linear-gradient(90deg, var(--bdw) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: .2;
+      pointer-events: none
+    }
+
+    .ai-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 77, 0, .07);
+      border: 1px solid rgba(255, 77, 0, .3);
+      padding: 7px 18px;
+      margin-bottom: 28px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or)
+    }
+
+    .ai-badge::before {
+      content: '●';
+      font-size: 7px;
+      animation: pulse 1.4s ease-in-out infinite
+    }
+
+    .ai-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--bdw);
+      border: 1px solid var(--bdw);
+      margin: 40px 0
+    }
+
+    .af {
+      display: flex;
+      gap: 20px;
+      padding: 24px 28px;
+      background: var(--bg);
+      transition: background .3s
+    }
+
+    .af:hover {
+      background: var(--bg3)
+    }
+
+    .af svg {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .af h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .af p {
+      font-size: 12px;
+      color: var(--wh2);
+      line-height: 1.65
+    }
+
+    /* TESTIMONIALS */
+    .test-sec {
+      padding: 110px var(--px);
+      background: var(--bg2);
+      border-top: 1px solid var(--bdw)
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--bdw);
+      border: 1px solid var(--bdw);
+      margin-top: 60px
+    }
+
+    .tc {
+      background: var(--bg2);
+      padding: 44px 36px;
+      transition: background .3s
+    }
+
+    .tc:hover {
+      background: var(--bg3)
+    }
+
+    .tc-q {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--or);
+      line-height: 1;
+      margin-bottom: 20px;
+      opacity: .5
+    }
+
+    .tc-p {
+      font-size: 14px;
+      color: var(--wh2);
+      line-height: 1.85;
+      margin-bottom: 32px;
+      font-style: italic
+    }
+
+    .tc-auth {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--bdw)
+    }
+
+    .tc-ico {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--bdw);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: var(--bg3);
+      flex-shrink: 0
+    }
+
+    .tc-name {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2
+    }
+
+    .tc-role {
+      font-size: 11px;
+      color: var(--or);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 3px
+    }
+
+    /* INDUSTRIES */
+    .ind-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--bdw);
+      border: 1px solid var(--bdw);
+      margin-top: 60px
+    }
+
+    .ii {
+      background: var(--bg);
+      padding: 36px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: background .3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden
+    }
+
+    .ii::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--or);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s var(--ease)
+    }
+
+    .ii:hover {
+      background: var(--bg3)
+    }
+
+    .ii:hover::before {
+      transform: scaleX(1)
+    }
+
+    .ii svg {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .ii-name {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .ii-desc {
+      font-size: 12px;
+      color: var(--wh2);
+      line-height: 1.6
+    }
+
+    /* CTA */
+    .cta-sec {
+      padding: 140px var(--px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg)
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(255, 77, 0, .07) 0%, transparent 65%);
+      pointer-events: none
+    }
+
+    .cta-sec .d1 {
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-sec p {
+      font-size: 17px;
+      color: var(--wh2);
+      max-width: 500px;
+      margin: 24px auto 48px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bdw);
+      padding: 80px var(--px) 32px
+    }
+
+    .foot-g {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 56px
+    }
+
+    .foot-logo {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px
+    }
+
+    .foot-logo img {
+      height: 100%;
+      width: auto;
+      display: block
+    }
+
+    .foot-brand p {
+      font-size: 13px;
+      color: var(--wh2);
+      line-height: 1.8;
+      max-width: 260px;
+      margin-bottom: 24px
+    }
+
+    .foot-social {
+      display: flex;
+      gap: 8px
+    }
+
+    .fsoc {
+      border: 1px solid var(--bdw);
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--wh3);
+      background: none;
+      transition: all .2s;
+      font-family: 'Syne', sans-serif;
+      cursor: pointer
+    }
+
+    .fsoc:hover {
+      border-color: var(--or);
+      color: var(--or)
+    }
+
+    .foot-col h5 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 20px
+    }
+
+    .foot-col ul {
+      list-style: none
+    }
+
+    .foot-col li {
+      margin-bottom: 12px
+    }
+
+    .foot-col li a {
+      font-size: 13px;
+      color: var(--wh2);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .foot-col li a:hover {
+      color: var(--wh)
+    }
+
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--bdw);
+      font-size: 11px;
+      color: var(--wh3);
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .foot-bottom .o {
+      color: var(--or)
+    }
+
+    @keyframes pr {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .25
+      }
+
+      50% {
+        transform: scale(1.3);
+        opacity: .06
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      .cap-layout {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+
+      .cap-sticky {
+        position: static
+      }
+
+      .cap-item {
+        grid-template-columns: 48px 1fr auto
+      }
+
+      .ai-layout,
+      .proc-layout {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+
+      .proc-ill,
+      .ai-ill-wrap {
+        display: none
+      }
+
+      .test-grid {
+        grid-template-columns: 1fr
+      }
+
+      .foot-g {
+        grid-template-columns: 1fr 1fr;
+        gap: 44px
+      }
+
+      .hero-stat-row {
+        flex-wrap: wrap
+      }
+
+      .hsr {
+        min-width: 140px
+      }
+    }
+
+    @media(max-width:768px) {
+      :root {
+        --px: clamp(20px, 5vw, 32px)
+      }
+
+      .ind-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .foot-g {
+        grid-template-columns: 1fr
+      }
+
+      .cap-item {
+        grid-template-columns: 40px 1fr
+      }
+
+      .cap-arr {
+        display: none
+      }
+
+      .d1 {
+        font-size: clamp(56px, 14vw, 112px)
+      }
+    }
+
+    @media(max-width:480px) {
+      .ind-grid {
+        grid-template-columns: 1fr
+      }
+
+      .trust-names {
+        gap: 24px
+      }
+    }
+
+    /* MAHII RABBIT HOME INTEGRATION */
+    .hero-game-wrap {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .webgl {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      background-color: transparent;
+      /* Make it transparent to see the grid/background */
+      cursor: move;
+      pointer-events: auto;
+      /* Enable interaction on the canvas itself */
+    }
+
+    #instructions {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      color: var(--or);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .block,
+    .empty {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+    }
+
+    .empty {
+      opacity: 0.03;
+      border: 1px solid var(--wh2);
+    }
+
+    .block .inner-tile {
+      position: absolute;
+      inset: 2px;
+      border: 2px solid var(--or);
+      background: rgba(255, 77, 0, 0.15);
+    }
+
+    .block .inner-inner-tile {
+      position: absolute;
+      inset: 4px;
+      background: var(--or);
+      box-shadow: 0 0 15px var(--or);
+    }
+
+    .btn-rounded {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--bdw);
+      color: var(--wh2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+      outline: none;
+    }
+
+    .btn-rounded:hover {
+      border-color: var(--or);
+      color: var(--or);
+      background: var(--org);
+      transform: translateY(-2px);
+    }
+
+    .btn-rounded i {
+      font-size: 14px;
+    }
+
+    .flipx {
+      transform: scaleX(-1);
+    }
+
+
+    @media(max-width:480px) {
+      #outer-board {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #stats {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        height: auto;
+      }
+
+      .labels {
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cur"></div>
+  <div id="cur2"></div>
+  <div id="grain"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="MahiiVerse"></a>
+    <div class="nav-links">
+      <a class="nl on" href="index.html">Home</a>
+      <a class="nl" href="about.html">About</a>
+      <a class="nl" href="contact.html">Contact</a>
+      <a class="nl" href="careers.html">Careers</a>
+      <a class="nav-cta" href="contact.html">Start a Project</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-game-wrap rv" style="transition-delay:.2s">
+      <canvas class="webgl"></canvas>
+      <div id="instructions"> - Press to jump - </div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text-content">
+        <div class="hero-tag rv"><span class="live"></span>India's Premier Tech & Design firm</div>
+        <div class="hero-title-wrap">
+          <div class="display d1">
+            <div class="split-line"><span class="word">YOUR</span>&nbsp;<span class="word">PROBLEM.</span></div>
+            <div class="split-line" style="transition-delay:.1s"><span class="word or">OUR</span>&nbsp;<span
+                class="word ol">OBSESSION.</span></div>
+          </div>
+        </div>
+        <p class="hero-sub rv" style="transition-delay:.3s">We are MahiiVerse — a technology and design consultancy that
+          embeds itself in your organisation, understands the root of every challenge, then builds solutions that
+          actually
+          work. No assumptions. No templates. Only precision.</p>
+        <div class="hero-actions rv" style="transition-delay:.4s">
+          <a class="btn-p" href="contact.html">Book a Free Discovery Call →</a>
+        </div>
+        <div class="hero-stat-row stagger">
+          <div class="hsr">
+            <div class="hsr-n" data-c="120">0</div>
+            <div class="hsr-l">Projects Delivered<br>Across technology and design</div>
+          </div>
+          <div class="hsr">
+            <div class="hsr-n" data-c="60">0</div>
+            <div class="hsr-l">Active Client Partners<br>Long-term relationships</div>
+          </div>
+          <div class="hsr">
+            <div class="hsr-n" data-c="18">0</div>
+            <div class="hsr-l">AI Agents Deployed<br>In production, solving real problems</div>
+          </div>
+          <div class="hsr">
+            <div class="hsr-n" data-c="98">0</div>
+            <div class="hsr-l">% Client Retention<br>Clients who return for more</div>
+          </div>
+        </div>
+      </div> <!-- end hero-text-content -->
+    </div>
+  </section>
+
+
+
+  <div class="mq-wrap">
+    <div class="mq-inner">
+      <span>Technology Solutions</span><span class="sep">◆</span><span>AI Agent Development</span><span
+        class="sep">◆</span><span>Brand Strategy</span><span class="sep">◆</span><span>UI/UX Design</span><span
+        class="sep">◆</span><span>Enterprise Automation</span><span class="sep">◆</span><span>Automobile
+        Campaigns</span><span class="sep">◆</span>
+      <span>Technology Solutions</span><span class="sep">◆</span><span>AI Agent Development</span><span
+        class="sep">◆</span><span>Brand Strategy</span><span class="sep">◆</span><span>UI/UX Design</span><span
+        class="sep">◆</span><span>Enterprise Automation</span><span class="sep">◆</span><span>Automobile
+        Campaigns</span><span class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <section class="sec">
+    <div class="cap-layout">
+      <div class="cap-sticky">
+        <div class="label rv">What We Do</div>
+        <h2 class="display d2 rv">WHAT WE<br>BUILD FOR<br><span class="or">YOU.</span></h2>
+        <p class="cap-desc rv">From zero-to-one tech builds to AI automation and immersive brand identity — MahiiVerse
+          is the single partner that handles every dimension of your growth.</p>
+      </div>
+      <div class="cap-list stagger">
+        <div class="cap-item">
+          <div class="cap-num">01</div>
+          <div>
+            <div class="cap-name">Technology Product Development<small>Web · Mobile · SaaS · API</small></div>
+            <div class="cap-tags"><span class="ctag">Full-Stack</span><span class="ctag">MVP Builds</span><span
+                class="ctag">System Architecture</span><span class="ctag">Cloud Deployment</span></div>
+          </div>
+          <div class="cap-arr">↗</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">02</div>
+          <div>
+            <div class="cap-name">AI & Automation Agents<small>LLMs · Workflows · RAG · Chatbots</small></div>
+            <div class="cap-tags"><span class="ctag">Custom Agents</span><span class="ctag">LLM Integration</span><span
+                class="ctag">Process Automation</span><span class="ctag">Data Pipelines</span></div>
+          </div>
+          <div class="cap-arr">↗</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">03</div>
+          <div>
+            <div class="cap-name">Marketing & Brand Design<small>Identity · Campaigns · Social · SEO</small></div>
+            <div class="cap-tags"><span class="ctag">Brand Identity</span><span class="ctag">Digital
+                Campaigns</span><span class="ctag">Content Strategy</span><span class="ctag">UI/UX</span></div>
+          </div>
+          <div class="cap-arr">↗</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE BAND -->
+  <!-- <div class="feat-band">
+    <div class="feat-band-bg"></div>
+    <div class="feat-band-grid"></div>
+    <div class="feat-band-inner">
+      <div class="label rv" style="justify-content:center;margin-bottom:24px">Our Methodology</div>
+      <h2 class="display d2 rv">WE DON'T TAKE BRIEFS.<br><span class="or">WE TAKE OWNERSHIP.</span></h2>
+      <p class="rv"
+        style="font-size:17px;color:var(--wh2);max-width:600px;margin:24px auto 0;line-height:1.85;transition-delay:.2s">
+        Before a single line of code is written or a single pixel is placed, our team embeds itself inside your
+        organisation — shadowing workflows, interviewing stakeholders, and stress-testing assumptions until we
+        understand the real problem. Most agencies skip this. It is where we begin.</p>
+      <div class="feat-tag-row rv" style="transition-delay:.3s">
+        <div class="feat-tag">Discovery & Audit</div>
+        <div class="feat-tag">Root Cause Analysis</div>
+        <div class="feat-tag">Bespoke Architecture</div>
+        <div class="feat-tag">Agile Build</div>
+        <div class="feat-tag">Long-Term Partnership</div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- PROCESS -->
+  <section class="sec">
+    <div class="label rv">How We Work</div>
+    <h2 class="display d2 rv" style="margin-bottom:64px">THE<br><span class="or">PROCESS.</span></h2>
+    <div class="proc-layout">
+      <div class="proc-ill rv-l">
+        <svg viewBox="0 0 460 520" fill="none">
+          <line x1="60" y1="60" x2="60" y2="480" stroke="#FF4D00" stroke-width="1" stroke-opacity=".15" />
+          <line x1="60" y1="96" x2="60" y2="172" stroke="#FF4D00" stroke-width="1.5" stroke-opacity=".3"
+            stroke-dasharray="4 5" />
+          <line x1="60" y1="208" x2="60" y2="268" stroke="#FF4D00" stroke-width="1.5" stroke-opacity=".3"
+            stroke-dasharray="4 5" />
+          <line x1="60" y1="304" x2="60" y2="362" stroke="#FF4D00" stroke-width="1.5" stroke-opacity=".3"
+            stroke-dasharray="4 5" />
+          <line x1="60" y1="398" x2="60" y2="450" stroke="#FF4D00" stroke-width="1.5" stroke-opacity=".3"
+            stroke-dasharray="4 5" />
+          <circle cx="60" cy="68" r="20" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="54" cy="63" r="5" stroke="#FF4D00" stroke-width="1" fill="rgba(255,77,0,.15)" />
+          <circle cx="67" cy="63" r="5" stroke="#FF4D00" stroke-width="1" fill="rgba(255,77,0,.15)" />
+          <path d="M50 75 Q60 82 70 75" stroke="#FF4D00" stroke-width="1.2" fill="none" />
+          <text x="92" y="62" font-family="Bebas Neue,sans-serif" font-size="20" fill="#EDEAE4"
+            letter-spacing="1">DISCOVERY &amp; AUDIT</text>
+          <text x="92" y="80" font-family="Syne,sans-serif" font-size="11" fill="#5a5550">Embed. Listen. Map. Understand
+            everything before assuming anything.</text>
+          <circle cx="60" cy="190" r="20" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="56" cy="186" r="8" stroke="#FF4D00" stroke-width="1.2" fill="none" />
+          <line x1="62" y1="193" x2="70" y2="201" stroke="#FF4D00" stroke-width="1.8" stroke-linecap="round" />
+          <text x="92" y="184" font-family="Bebas Neue,sans-serif" font-size="20" fill="#EDEAE4" letter-spacing="1">ROOT
+            CAUSE ANALYSIS</text>
+          <text x="92" y="202" font-family="Syne,sans-serif" font-size="11" fill="#5a5550">Distinguish symptoms from
+            causes. Prescribe precisely, not generically.</text>
+          <circle cx="60" cy="286" r="20" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <line x1="52" y1="294" x2="68" y2="278" stroke="#FF4D00" stroke-width="1.5" stroke-linecap="round" />
+          <circle cx="52" cy="294" r="2.5" fill="#FF4D00" fill-opacity=".7" />
+          <text x="92" y="280" font-family="Bebas Neue,sans-serif" font-size="20" fill="#EDEAE4"
+            letter-spacing="1">BESPOKE SOLUTION DESIGN</text>
+          <text x="92" y="298" font-family="Syne,sans-serif" font-size="11" fill="#5a5550">Custom-built architecture. No
+            templates. Purpose-built for your context.</text>
+          <circle cx="60" cy="380" r="20" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <path d="M53 372 L49 380 L53 388" stroke="#FF4D00" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M67 372 L71 380 L67 388" stroke="#FF4D00" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <text x="92" y="374" font-family="Bebas Neue,sans-serif" font-size="20" fill="#EDEAE4"
+            letter-spacing="1">BUILD, TEST &amp; ITERATE</text>
+          <text x="92" y="392" font-family="Syne,sans-serif" font-size="11" fill="#5a5550">Ship incrementally. Validate
+            in real conditions. Refine relentlessly.</text>
+          <circle cx="60" cy="468" r="20" stroke="#FF4D00" stroke-width="2" fill="rgba(255,77,0,.12)" />
+          <circle cx="60" cy="468" r="28" stroke="#FF4D00" stroke-width=".8" fill="none" stroke-opacity=".2"
+            style="animation:pr 2.5s ease-in-out infinite" />
+          <path d="M60 480 L60 458 Q60 452 66 456 L68 460 L68 466 L62 470Z" stroke="#FF4D00" stroke-width="1.2"
+            fill="rgba(255,77,0,.15)" />
+          <text x="92" y="462" font-family="Bebas Neue,sans-serif" font-size="20" fill="#FF4D00"
+            letter-spacing="1">LAUNCH &amp; LONG-TERM CARE</text>
+          <text x="92" y="480" font-family="Syne,sans-serif" font-size="11" fill="#5a5550">Go live. Monitor outcomes.
+            Scale. We stay your strategic partner.</text>
+        </svg>
+      </div>
+      <div class="stagger">
+        <div class="ps">
+          <div class="ps-n">01</div>
+          <div class="ps-body">
+            <h4>Deep-Dive Discovery</h4>
+            <p>Our team spends dedicated time inside your organisation —
+              observing workflows, interviewing stakeholders, and auditing existing systems. Most agencies skip this. It
+              is where we begin.</p>
+          </div>
+        </div>
+        <div class="ps">
+          <div class="ps-n">02</div>
+          <div class="ps-body">
+            <h4>Root Cause Analysis</h4>
+            <p>We draw a clear distinction between symptoms and causes. A slow customer response time might be a CRM
+              problem — or a staffing problem — or a process problem. We find out which before we prescribe anything.
+            </p>
+          </div>
+        </div>
+        <div class="ps">
+          <div class="ps-n">03</div>
+          <div class="ps-body">
+            <h4>Tailored Solution Architecture</h4>
+            <p>Every deliverable is engineered specifically for your situation. We bring frameworks but never apply
+              cookie-cutter solutions to bespoke problems. The design reflects your operational reality, not a generic
+              template.</p>
+          </div>
+        </div>
+        <div class="ps">
+          <div class="ps-n">04</div>
+          <div class="ps-body">
+            <h4>Agile Build & Validation</h4>
+            <p>We ship iteratively and test in real conditions. You are involved at every significant checkpoint — not
+              just the final handoff. Feedback loops drive every refinement cycle.</p>
+          </div>
+        </div>
+        <div class="ps">
+          <div class="ps-n">05</div>
+          <div class="ps-body">
+            <h4>Growth Partnership</h4>
+            <p>MahiiVerse continues as your strategic partner — monitoring
+              outcomes, advising on evolution, and building the next phase as your business scales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section class="ai-sec">
+    <div class="ai-grid-bg"></div>
+    <div class="ai-layout">
+      <div>
+        <div class="ai-badge">Now Deploying Across India</div>
+        <h2 class="display d2 rv" style="margin-bottom:24px">INTELLIGENT<br>AGENTS FOR<br>THE <span
+            class="or">REAL</span><br>WORLD.</h2>
+
+        <div class="ai-feats rv" style="transition-delay:.25s">
+          <div class="af"><svg viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="15" stroke="#FF4D00" stroke-width="1" stroke-opacity=".5" />
+              <path d="M12 20 L17 25 L28 13" stroke="#FF4D00" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <div>
+              <h4>Built for Your Exact Problem</h4>
+              <p>No off-the-shelf AI. Every agent is designed around your specific workflow, data, and operational
+                constraints — custom from day one.</p>
+            </div>
+          </div>
+          <div class="af"><svg viewBox="0 0 40 40" fill="none">
+              <rect x="7" y="11" width="26" height="18" rx="2" stroke="#FF4D00" stroke-width="1" stroke-opacity=".5" />
+              <line x1="7" y1="17" x2="33" y2="17" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".4" />
+              <line x1="16" y1="17" x2="16" y2="29" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".4" />
+              <circle cx="11" cy="23" r="2.5" stroke="#FF4D00" stroke-width=".8" fill="rgba(255,77,0,.15)" />
+              <line x1="20" y1="22" x2="28" y2="22" stroke="#FF4D00" stroke-width="1" stroke-opacity=".5" />
+            </svg>
+            <div>
+              <h4>Seamless System Integration</h4>
+              <p>Agents connect to your existing tools — CRMs, ERPs, databases, messaging platforms — with minimal
+                disruption to current operations.</p>
+            </div>
+          </div>
+          <div class="af"><svg viewBox="0 0 40 40" fill="none">
+              <polyline points="6,30 12,20 18,24 25,13 33,17" stroke="#FF4D00" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" stroke-opacity=".8" />
+              <circle cx="33" cy="17" r="2.5" fill="#FF4D00" fill-opacity=".7" />
+            </svg>
+            <div>
+              <h4>Measurable Business Impact</h4>
+              <p>Every agent deployment ships with clear KPIs and a performance dashboard so you can see exactly what
+                efficiency gains you're achieving.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ai-ill-wrap rv-r">
+        <svg viewBox="0 0 420 440" fill="none">
+          <circle cx="40" cy="88" r="12" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="40" cy="168" r="12" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="40" cy="248" r="12" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="40" cy="328" r="12" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="160" cy="60" r="11" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="160" cy="140" r="11" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="160" cy="220" r="11" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="160" cy="300" r="11" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="160" cy="380" r="11" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.07)" />
+          <circle cx="280" cy="110" r="14" stroke="#FF4D00" stroke-width="1.5" fill="rgba(255,77,0,.1)" />
+          <circle cx="280" cy="220" r="14" stroke="#FF4D00" stroke-width="1.5" fill="rgba(255,77,0,.1)" />
+          <circle cx="280" cy="330" r="14" stroke="#FF4D00" stroke-width="1.5" fill="rgba(255,77,0,.1)" />
+          <circle cx="280" cy="110" r="5" fill="#FF4D00" fill-opacity=".35" />
+          <circle cx="280" cy="220" r="5" fill="#FF4D00" fill-opacity=".55" />
+          <circle cx="280" cy="330" r="5" fill="#FF4D00" fill-opacity=".35" />
+          <circle cx="392" cy="160" r="15" stroke="#FF4D00" stroke-width="2" fill="rgba(255,77,0,.12)" />
+          <circle cx="392" cy="280" r="15" stroke="#FF4D00" stroke-width="2" fill="rgba(255,77,0,.12)" />
+          <circle cx="392" cy="160" r="6" fill="#FF4D00" fill-opacity=".65" />
+          <circle cx="392" cy="280" r="6" fill="#FF4D00" fill-opacity=".45" />
+          <circle cx="392" cy="160" r="24" stroke="#FF4D00" stroke-width=".8" fill="none" stroke-opacity=".2"
+            style="animation:pr 2s ease-in-out infinite" />
+          <line x1="52" y1="88" x2="149" y2="60" stroke="#FF4D00" stroke-width=".6" stroke-opacity=".2" />
+          <line x1="52" y1="88" x2="149" y2="140" stroke="#FF4D00" stroke-width=".6" stroke-opacity=".2" />
+          <line x1="52" y1="168" x2="149" y2="140" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".3" />
+          <line x1="52" y1="168" x2="149" y2="220" stroke="#FF4D00" stroke-width=".6" stroke-opacity=".2" />
+          <line x1="52" y1="248" x2="149" y2="220" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".3" />
+          <line x1="52" y1="248" x2="149" y2="300" stroke="#FF4D00" stroke-width=".6" stroke-opacity=".2" />
+          <line x1="52" y1="328" x2="149" y2="300" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".3" />
+          <line x1="52" y1="328" x2="149" y2="380" stroke="#FF4D00" stroke-width=".6" stroke-opacity=".2" />
+          <line x1="171" y1="60" x2="266" y2="110" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".25" />
+          <line x1="171" y1="140" x2="266" y2="110" stroke="#FF4D00" stroke-width=".9" stroke-opacity=".35" />
+          <line x1="171" y1="140" x2="266" y2="220" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".25" />
+          <line x1="171" y1="220" x2="266" y2="220" stroke="#FF4D00" stroke-width="1" stroke-opacity=".4" />
+          <line x1="171" y1="300" x2="266" y2="220" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".25" />
+          <line x1="171" y1="300" x2="266" y2="330" stroke="#FF4D00" stroke-width=".9" stroke-opacity=".35" />
+          <line x1="171" y1="380" x2="266" y2="330" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".25" />
+          <line x1="294" y1="110" x2="377" y2="160" stroke="#FF4D00" stroke-width="1.2" stroke-opacity=".5" />
+          <line x1="294" y1="220" x2="377" y2="160" stroke="#FF4D00" stroke-width=".9" stroke-opacity=".35" />
+          <line x1="294" y1="220" x2="377" y2="280" stroke="#FF4D00" stroke-width="1.2" stroke-opacity=".5" />
+          <line x1="294" y1="330" x2="377" y2="280" stroke="#FF4D00" stroke-width=".9" stroke-opacity=".35" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS
+  <section class="test-sec">
+    <div class="label rv">Client Perspectives</div>
+    <h2 class="display d2 rv" style="margin-bottom:0">WHAT OUR<br><span class="or">CLIENTS</span> SAY.</h2>
+    <div class="test-grid">
+      <div class="tc rv">
+        <div class="tc-q">"</div>
+        <p class="tc-p">MahiiVerse didn't just build our platform — they spent two weeks with our operations team before
+          writing a single line of code. The result was a tool our team actually adopted, because it was designed around
+          how we actually work.</p>
+        <div class="tc-auth">
+          <div class="tc-ico">🚀</div>
+          <div>
+            <div class="tc-name">Chief Technology Officer</div>
+            <div class="tc-role">Technological Infrastructure Firm</div>
+          </div>
+        </div>
+      </div>
+      <div class="tc rv" style="transition-delay:.1s">
+        <div class="tc-q">"</div>
+        <p class="tc-p">Within three months of the rebrand, every touchpoint across our 14 locations felt cohesive for
+          the first time. Revenue at our flagship grew 28% in the quarter following launch. The ROI has been
+          extraordinary.</p>
+        <div class="tc-auth">
+          <div class="tc-ico">🍽️</div>
+          <div>
+            <div class="tc-name">Founder & Managing Director</div>
+            <div class="tc-role">Leading F&B Group</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section> -->
+
+  <!-- INDUSTRIES -->
+  <section class="sec" style="background:var(--bg2);border-top:1px solid var(--bdw)">
+    <div class="label rv">Industries We Serve</div>
+    <h2 class="display d2 rv" style="margin-bottom:16px">DEEP EXPERTISE<br>ACROSS EVERY<br><span
+        class="or">SECTOR.</span></h2>
+
+    <div class="ind-grid">
+      <div class="ii rv"><svg viewBox="0 0 36 36" fill="none">
+          <path d="M18 4 L30 10 L30 26 L18 32 L6 26 L6 10 Z" stroke="#FF4D00" stroke-width="1.2"
+            fill="rgba(255,77,0,.07)" />
+          <line x1="18" y1="4" x2="18" y2="32" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".4" />
+          <line x1="6" y1="18" x2="30" y2="18" stroke="#FF4D00" stroke-width=".7" stroke-opacity=".4" />
+        </svg>
+        <div>
+          <div class="ii-name">Startups</div>
+          <div class="ii-desc">MVPs, product builds, AI tools, and growth marketing for early and growth-stage ventures.
+          </div>
+        </div>
+      </div>
+      <div class="ii rv" style="transition-delay:.06s"><svg viewBox="0 0 36 36" fill="none">
+          <rect x="7" y="12" width="22" height="20" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.06)" />
+          <rect x="13" y="24" width="10" height="8" stroke="#FF4D00" stroke-width="1" />
+          <path d="M7 12 L18 5 L29 12" stroke="#FF4D00" stroke-width="1.2" />
+          <rect x="10" y="15" width="5" height="5" stroke="#FF4D00" stroke-width=".8" />
+          <rect x="21" y="15" width="5" height="5" stroke="#FF4D00" stroke-width=".8" />
+        </svg>
+        <div>
+          <div class="ii-name">Enterprises</div>
+          <div class="ii-desc">Process automation, AI deployment, enterprise tools, and large-scale digital
+            transformation.</div>
+        </div>
+      </div>
+      <div class="ii rv" style="transition-delay:.12s"><svg viewBox="0 0 36 36" fill="none">
+          <path d="M9 28 Q18 12 27 28" stroke="#FF4D00" stroke-width="1.2" fill="rgba(255,77,0,.05)" />
+          <circle cx="18" cy="16" r="5" stroke="#FF4D00" stroke-width="1" />
+          <line x1="6" y1="30" x2="30" y2="30" stroke="#FF4D00" stroke-width="1.5" />
+        </svg>
+        <div>
+          <div class="ii-name">Food & Beverage</div>
+          <div class="ii-desc">Restaurant branding, menu design, launch campaigns, digital presence, and delivery
+            platform strategy.</div>
+        </div>
+      </div>
+      <div class="ii rv" style="transition-delay:.18s"><svg viewBox="0 0 36 36" fill="none">
+          <rect x="2" y="16" width="32" height="12" rx="3" stroke="#FF4D00" stroke-width="1.2"
+            fill="rgba(255,77,0,.06)" />
+          <circle cx="10" cy="30" r="3.5" stroke="#FF4D00" stroke-width="1.2" />
+          <circle cx="26" cy="30" r="3.5" stroke="#FF4D00" stroke-width="1.2" />
+          <path d="M2 16 L7 9 L29 9 L34 16" stroke="#FF4D00" stroke-width="1.2" />
+        </svg>
+        <div>
+          <div class="ii-name">Automobile</div>
+          <div class="ii-desc">Dealership marketing, digital campaigns, and integrated brand activation programs for
+            major launches.</div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="ii rv" style="transition-delay:.42s"><svg viewBox="0 0 36 36" fill="none">
+          <rect x="6" y="5" width="24" height="28" rx="2" stroke="#FF4D00" stroke-width="1.2"
+            fill="rgba(255,77,0,.06)" />
+          <line x1="11" y1="12" x2="25" y2="12" stroke="#FF4D00" stroke-width="1" />
+          <line x1="11" y1="17" x2="25" y2="17" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".6" />
+          <line x1="11" y1="22" x2="19" y2="22" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".5" />
+        </svg>
+        <div>
+          <div class="ii-name">Healthcare</div>
+          <div class="ii-desc">Patient-facing digital tools, health-tech product builds, and compliant brand
+            communication.</div>
+        </div>
+      </div>
+      <div class="ii rv" style="transition-delay:.48s"><svg viewBox="0 0 36 36" fill="none">
+          <rect x="4" y="8" width="28" height="20" rx="2" stroke="#FF4D00" stroke-width="1.2"
+            fill="rgba(255,77,0,.06)" />
+          <line x1="4" y1="14" x2="32" y2="14" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".5" />
+          <rect x="8" y="18" width="8" height="5" rx="1" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".5" />
+          <line x1="20" y1="19" x2="28" y2="19" stroke="#FF4D00" stroke-width=".8" stroke-opacity=".4" />
+        </svg>
+        <div>
+          <div class="ii-name">Real Estate</div>
+          <div class="ii-desc">Project launches, digital lead funnels, virtual tour tech, and developer brand
+            positioning.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-glow"></div>
+    <div class="label rv" style="justify-content:center;margin-bottom:24px">Ready?</div>
+    <h2 class="display d1 rv">LET'S SOLVE<br><span class="or">SOMETHING</span><br><span class="ol">REMARKABLE.</span>
+    </h2>
+    <p class="rv" style="transition-delay:.2s">The first conversation costs you nothing. We'll spend time understanding
+      your challenge and give an honest perspective — no pitch, no commitment required.</p>
+    <div class="cta-btns rv" style="transition-delay:.3s">
+      <a class="btn-p" href="contact.html">Book a Free Discovery Call</a>
+      <a class="btn-o" href="about.html">Meet the Team</a>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="foot-g">
+      <div class="foot-brand">
+        <div class="foot-logo"><img src="logo.png" alt="MahiiVerse"></div>
+        <p>India's premier technology and design consultancy. We build, brand, automate, and activate for the businesses
+          that are going somewhere fast.</p>
+        <!-- <div class="foot-social"><button class="fsoc">IG</button><button class="fsoc">LI</button><button
+            class="fsoc">X</button><button class="fsoc">YT</button></div> -->
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Tech Development</a></li>
+          <li><a href="#">AI Agents</a></li>
+          <li><a href="#">Brand & Marketing</a></li>
+          <li><a href="#">UI/UX Design</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">Our Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Get In Touch</h5>
+        <ul>
+          <li><a href="mailto:maheshwarreddymr39@gmail.com">maheshwarreddymr39@gmail.com</a></li>
+          <li><a href="mailto:projects@mahiiverse.in">projects@mahiiverse.in</a></li>
+          <li><a href="tel:+919071160399">+91 9071160399</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 MahiiVerse Technologies Pvt. Ltd. All rights reserved.</span><span>Crafted
+        with <span class="o">precision</span> in India</span></div>
+  </footer>
+
+  <script>
+    // Core Site Logic: Cursor & Scroll Animations
+    const C = document.getElementById('cur'), CR = document.getElementById('cur2');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY });
+    (function tick() {
+      C.style.left = mx + 'px'; C.style.top = my + 'px';
+      rx += (mx - rx) * .1; ry += (my - ry) * .1;
+      CR.style.left = rx + 'px'; CR.style.top = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+
+    document.addEventListener('mouseover', e => {
+      document.body.classList.toggle('hov', !!e.target.closest('a,button,.vc,.tcard,.svc-row'));
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          obs.unobserve(en.target);
+        }
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.rv,.rv-l,.rv-r,.stagger,.split-line').forEach(el => obs.observe(el));
+
+    // Stats Counter
+    document.querySelectorAll('[data-c]').forEach(el => {
+      const t = +el.getAttribute('data-c'), pct = (t === 98);
+      let cur = 0;
+      el.removeAttribute('data-c');
+      const step = t / (1400 / 16);
+      const tm = setInterval(() => {
+        cur = Math.min(cur + step, t);
+        el.textContent = Math.floor(cur) + (pct ? '%' : '+');
+        if (cur >= t) clearInterval(tm);
+      }, 16);
+    });
+  </script>
+
+  <!-- SHADERS -->
+  <script type="x-shader/x-vertex" id="reflectorVertexShader">
+    uniform mat4 textureMatrix;
+    varying vec4 vUvReflection;
+    varying vec2 vUv; 
+    #include <common>
+    #include <shadowmap_pars_vertex>
+    #include <logdepthbuf_pars_vertex>
+    void main() {
+      #include <beginnormal_vertex>
+      #include <defaultnormal_vertex>
+      #include <begin_vertex>
+      vUvReflection = textureMatrix * vec4( position, 1.0 );
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      #include <logdepthbuf_vertex>
+      #include <worldpos_vertex>
+      #include <shadowmap_vertex>
+    }
+  </script>
+  <script type="x-shader/x-fragment" id="reflectorFragmentShader">
+    uniform vec3 color;
+    uniform sampler2D tDiffuse;
+    uniform sampler2D tScratches;
+    varying vec4 vUvReflection;
+    varying vec2 vUv;
+    #include <common>
+    #include <packing>
+    #include <lights_pars_begin>
+    #include <shadowmap_pars_fragment>
+    #include <shadowmask_pars_fragment>
+    #include <logdepthbuf_pars_fragment>
+    vec4 blur9(sampler2D image, vec4 uv, vec2 resolution, vec2 direction) {
+      vec4 color = vec4(0.0);
+      vec2 off1 = vec2(1.3846153846) * direction;
+      vec2 off2 = vec2(3.2307692308) * direction;
+      color += texture2DProj(image, uv) * 0.2270270270;
+      color += texture2DProj(image, uv + vec4(off1 / resolution, off1 / resolution)) * 0.3162162162;
+      color += texture2DProj(image, uv - vec4(off1 / resolution, off1 / resolution)) * 0.3162162162;
+      color += texture2DProj(image, uv + vec4(off2 / resolution, off2 / resolution)) * 0.0702702703;
+      color += texture2DProj(image, uv - vec4(off2 / resolution, off2 / resolution)) * 0.0702702703;
+      return color;
+    }
+    void main() {
+      #include <logdepthbuf_fragment>
+      vec4 displacement = vec4( sin(vUvReflection.y * 3.) * .05, sin(vUvReflection.x * 3.) * .05, 0.0, 0.0);
+      vec2 resolution = vec2(30., 30.);
+      vec4 base = blur9( tDiffuse, vUvReflection + displacement, resolution, vec2(1., 0.) ) * .25;
+      base += blur9( tDiffuse, vUvReflection + displacement, resolution, vec2(-1., 0.) ) * .25;
+      base += blur9( tDiffuse, vUvReflection + displacement, resolution, vec2(0, 1.) ) * .25;
+      base += blur9( tDiffuse, vUvReflection + displacement, resolution, vec2(0, -1.) ) * .25;
+      vec4 scratchesCol = texture2D( tScratches, vUv);
+      vec3 col = mix(color, base.rgb, .5);
+      col.rgb += scratchesCol.r * .02;
+      col.gb -= scratchesCol.g * .01;
+      col.gb -= (1.0 - getShadowMask() ) * .015;
+
+      float shadowAlpha = (1.0 - getShadowMask()) * 0.8;
+      vec3 cleanReflect = max(base.rgb - color, 0.0);
+      float reflectionAlpha = length(cleanReflect) * 2.0;
+
+      float dist = length(vUv - vec2(0.5));
+      float alpha = max(shadowAlpha, reflectionAlpha);
+      alpha = max(alpha, scratchesCol.r * 0.7);
+      alpha *= smoothstep(0.5, 0.15, dist);
+
+      gl_FragColor = vec4(col, alpha);
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
+    }
+  </script>
+  <script type="x-shader/x-vertex" id="simulationVertexShader">
+    precision highp float;
+    uniform float time;
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_Position = projectionMatrix * modelViewPosition; 
+    }
+  </script>
+  <script type="x-shader/x-fragment" id="simulationFragmentShader">
+    precision highp float;
+    uniform sampler2D inputTexture;
+    uniform vec2 blade1PosOld;
+    uniform vec2 blade1PosNew;
+    uniform float strength;
+    uniform float time;
+    varying vec2 vUv;
+    float lineSegment(vec2 p, vec2 a, vec2 b, float thickness) {
+      vec2 pa = p - a;
+      vec2 ba = b - a;
+      float h = clamp( dot(pa,ba)/dot(ba,ba), 0.0, 1.0 );
+      float idk = length(pa - ba*h);
+      return smoothstep(thickness, .2 * thickness, idk);
+    }
+    void main(void) {
+      vec4 prevTexture = texture2D(inputTexture, vUv);
+      vec3 col = prevTexture.rgb * .999;
+      if (strength>0.){
+        float space = .001;
+        float crease = .001;
+        float thickness = .001 + strength * .001;
+        float leftRed = lineSegment(vUv + space, blade1PosOld, blade1PosNew, thickness);
+        float leftGreen = lineSegment(vUv + space + crease, blade1PosOld, blade1PosNew, thickness);
+        float rightRed = lineSegment(vUv - space - crease, blade1PosOld, blade1PosNew, thickness);
+        float rightGreen = lineSegment(vUv - space, blade1PosOld, blade1PosNew, thickness);
+        col.r += ( leftRed + rightRed ) * strength * 3.0;
+        col.g += ( leftGreen + rightGreen) * strength * 3.0;
+        col.r = clamp(col.r, .0, 1.0);
+        col.g = clamp(col.g, .0, 1.0);
+      }
+      gl_FragColor = vec4(col, 1.0);
+    }
+  </script>
+  <script type="x-shader/x-fragment" id="outlineFragmentShader">
+    precision highp float;
+    uniform vec3 color;
+    void main(void) { gl_FragColor = vec4( color, 1.0); }
+  </script>
+  <script type="x-shader/x-vertex" id="outlineVertexShader">
+    uniform float size;
+    uniform float time;
+    void main() {
+      vec3 transformed = position + normal * size * (1.0 + abs( sin ( position.y * time * .02 ) * 2.0 ));
+      vec4 modelViewPosition = modelViewMatrix * vec4(transformed, 1.0);
+      gl_Position = projectionMatrix * modelViewPosition; 
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.156.1";
+    import { GLTFLoader } from "https://esm.sh/three@0.156.1/examples/jsm/loaders/GLTFLoader";
+    import gsap from "https://esm.sh/gsap";
+    import { Reflector } from "https://esm.sh/three@0.156.1/examples/jsm/objects/Reflector"
+
+    class BufferSim {
+      constructor(renderer, width, height, shader) {
+        this.renderer = renderer;
+        this.shader = shader;
+        this.orthoScene = new THREE.Scene();
+        var fbo = new THREE.WebGLRenderTarget(width, height, {
+          wrapS: THREE.ClampToEdgeWrapping,
+          wrapT: THREE.ClampToEdgeWrapping,
+          minFilter: THREE.LinearFilter,
+          magFilter: THREE.LinearFilter,
+          format: THREE.RGBAFormat,
+          type: THREE.FloatType,
+          stencilBuffer: false,
+          depthBuffer: false
+        });
+        fbo.texture.generateMipmaps = false;
+        this.fbos = [fbo, fbo.clone()];
+        this.current = 0;
+        this.output = this.fbos[0];
+        this.orthoCamera = new THREE.OrthographicCamera(width / - 2, width / 2, height / 2, height / - 2, .00001, 1000);
+        this.orthoQuad = new THREE.Mesh(new THREE.PlaneGeometry(width, height), this.shader);
+        this.orthoScene.add(this.orthoQuad);
+      }
+      render() {
+        this.shader.uniforms.inputTexture.value = this.fbos[this.current].texture;
+        this.input = this.fbos[this.current];
+        this.current = 1 - this.current;
+        this.output = this.fbos[this.current];
+        this.renderer.setRenderTarget(this.output);
+        this.renderer.render(this.orthoScene, this.orthoCamera);
+        this.renderer.setRenderTarget(null);
+      }
+    }
+
+    class App {
+      constructor() {
+        this.container = document.querySelector('.hero-game-wrap');
+        if (!this.container) return;
+        const style = window.getComputedStyle(this.container);
+        this.winWidth = this.container.clientWidth - parseFloat(style.paddingLeft || 0) - parseFloat(style.paddingRight || 0);
+        this.winHeight = this.container.clientHeight - parseFloat(style.paddingTop || 0) - parseFloat(style.paddingBottom || 0);
+        this.gltfFile = "https://assets.codepen.io/264161/rabbit6.glb";
+        this.loadAssets();
+      }
+      loadAssets() {
+        const loaderModel = new GLTFLoader();
+        loaderModel.load(this.gltfFile, (gltf) => {
+          this.model = gltf.scene;
+          this.setUpScene();
+        });
+      }
+      setUpScene() {
+        this.scene = new THREE.Scene();
+        this.bgrColor = 0x080808;
+        this.fog = new THREE.Fog(this.bgrColor, 13, 20);
+        this.scene.fog = this.fog;
+        this.camera = new THREE.PerspectiveCamera(60, this.winWidth / this.winHeight, 1, 100);
+        this.camera.position.set(0, 4, 8);
+        this.camera.lookAt(new THREE.Vector3());
+        this.scene.add(this.camera);
+
+        this.heroOldUVPos = new THREE.Vector2(0.5, 0.5);
+        this.heroNewUVPos = new THREE.Vector2(0.5, 0.5);
+        this.heroSpeed = new THREE.Vector2(0, 0);
+        this.targetHeroUVPos = new THREE.Vector2(0.5, 0.5);
+        this.targetHeroAbsMousePos = new THREE.Vector2(0, 0);
+        this.raycaster = new THREE.Raycaster();
+        this.mouse = new THREE.Vector2();
+        this.isJumping = false;
+        this.jumpParams = { jumpProgress: 0 };
+
+        this.clock = new THREE.Clock();
+        this.time = 0;
+
+        this.createRenderer();
+        this.createSim();
+        this.createListeners();
+
+        this.floorSize = 30;
+        this.createMaterials();
+        this.processModel();
+        this.createFloor();
+        this.createLine();
+        this.createLight();
+        this.createParticles();
+        this.draw();
+      }
+      processModel() {
+        this.rabbit = this.model.getObjectByName("Rabbit");
+        this.rabbitBody = this.model.getObjectByName("body");
+        this.earRight = this.model.getObjectByName("earRight");
+        this.earLeft = this.model.getObjectByName("earLeft");
+        this.tail = this.model.getObjectByName("tail");
+        this.footLeft = this.model.getObjectByName("footLeft");
+        this.footRight = this.model.getObjectByName("footRight");
+        this.eyeLeft = this.model.getObjectByName("eyeLeft");
+        this.eyeRight = this.model.getObjectByName("eyeRight");
+        this.carrot = this.model.getObjectByName("carrot");
+        this.carrotLeaf = this.model.getObjectByName("carrotLeaf");
+        this.carrotLeaf2 = this.model.getObjectByName("carrotLeaf2");
+
+        this.carrot.rotation.z = 0.2;
+        this.carrot.rotation.x = 0.2;
+
+        this.rabbitBody.material = this.primMat;
+        this.earRight.material = this.primMat;
+        this.earLeft.material = this.primMat;
+        this.tail.material = this.primMat;
+        this.footLeft.material = this.secMat;
+        this.footRight.material = this.secMat;
+        this.eyeLeft.material = this.secMat;
+        this.eyeRight.material = this.secMat;
+        this.carrot.material = this.bonusMat;
+        this.carrotLeaf.material = this.primMat;
+        this.carrotLeaf2.material = this.primMat;
+
+        this.addOutline(this.rabbitBody);
+        this.addOutline(this.earRight);
+        this.addOutline(this.earLeft);
+        this.addOutline(this.tail);
+        this.addOutline(this.carrot);
+
+        this.rabbit.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+        this.carrot.traverse((o) => { if (o.isMesh) { o.castShadow = true; } });
+        this.rabbit.position.set(0, 0, 0); // Center the rabbit explicitly
+        this.scene.add(this.rabbit);
+        this.scene.add(this.carrot);
+      }
+      createFloor() {
+        this.floor = new Reflector(new THREE.PlaneGeometry(this.floorSize, this.floorSize), {
+          color: new THREE.Color(this.bgrColor),
+          textureWidth: 1024,
+          textureHeight: 1024
+        });
+        this.floor.rotation.x = -Math.PI / 2;
+        this.floor.receiveShadow = true;
+        this.modifyFloorShader();
+        this.scene.add(this.floor);
+      }
+      createLine() {
+        const material = new THREE.LineDashedMaterial({ color: 0x7beeff, linewidth: 1, scale: 1, dashSize: 0.2, gapSize: 0.1 });
+        const points = [new THREE.Vector3(0, 0.2, 0), new THREE.Vector3(3, 0.2, 3)];
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        this.line = new THREE.Line(geometry, material);
+        this.scene.add(this.line);
+      }
+      createParticles() {
+        let particleGeom = new THREE.BoxGeometry(.2, .2, .2);
+        this.particles1 = []; this.particles2 = [];
+        for (let i = 0; i < 20; i++) {
+          let m = new THREE.Mesh(particleGeom, this.bonusMat);
+          this.particles1.push(m); m.scale.set(0, 0, 0); this.scene.add(m);
+        }
+        for (let i = 0; i < 5; i++) {
+          let m = new THREE.Mesh(particleGeom, this.primMat);
+          this.particles2.push(m); m.scale.set(0, 0, 0); this.scene.add(m);
+        }
+      }
+      createLight() {
+        this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        this.light = new THREE.DirectionalLight(0xffffff, 1);
+        this.light.position.set(1, 5, 1);
+        this.light.castShadow = true;
+        this.light.shadow.mapSize.set(512, 512);
+        this.light.shadow.camera.near = 0.5;
+        this.light.shadow.camera.far = 12;
+        this.light.shadow.camera.left = -12;
+        this.light.shadow.camera.right = 12;
+        this.light.shadow.camera.bottom = -12;
+        this.light.shadow.camera.top = 12;
+        this.light.shadow.radius = 3;
+        this.scene.add(this.light);
+      }
+      createRenderer() {
+        const canvas = document.querySelector("canvas.webgl");
+        this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        this.renderer.setClearColor(this.bgrColor, 0);
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setSize(this.winWidth, this.winHeight);
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.VSMShadowMap;
+      }
+      createSim() {
+        const fragmentShader = document.getElementById('simulationFragmentShader').textContent;
+        const vertexShader = document.getElementById('simulationVertexShader').textContent;
+        this.floorSimMat = new THREE.ShaderMaterial({
+          uniforms: { inputTexture: { value: null }, time: { value: 0.0 }, blade1PosOld: { value: new THREE.Vector2(.5, .5) }, blade1PosNew: { value: new THREE.Vector2(.5, .5) }, strength: { value: 0.0 } },
+          vertexShader, fragmentShader,
+        });
+        this.bufferSim = new BufferSim(this.renderer, 1024, 1024, this.floorSimMat);
+      }
+      createMaterials() {
+        this.primMat = new THREE.MeshToonMaterial({ color: 0xFF4D00 });
+        this.secMat = new THREE.MeshToonMaterial({ color: 0x1a1a1a });
+        this.bonusMat = new THREE.MeshToonMaterial({ color: 0x7beeff });
+        const fragmentShader = document.getElementById('outlineFragmentShader').textContent;
+        const vertexShader = document.getElementById('outlineVertexShader').textContent;
+        this.outlineMat = new THREE.ShaderMaterial({
+          uniforms: { color: { value: new THREE.Color(0x000000) }, size: { value: .02 } },
+          vertexShader, fragmentShader, side: THREE.BackSide
+        });
+      }
+      addOutline(origin) {
+        let outline = origin.clone();
+        outline.children = []; outline.position.set(0, 0, 0); outline.rotation.set(0, 0, 0); outline.scale.set(1, 1, 1); outline.material = this.outlineMat;
+        origin.add(outline);
+      }
+      createListeners() {
+        window.addEventListener("resize", this.onWindowResize.bind(this));
+        this.container.addEventListener("mousemove", this.onMouseMove.bind(this));
+        this.container.addEventListener("mousedown", this.onMouseDown.bind(this));
+      }
+      draw() {
+        this.updateGame();
+        this.renderer.render(this.scene, this.camera);
+        window.requestAnimationFrame(this.draw.bind(this));
+      }
+      updateGame() {
+        this.dt = Math.min(this.clock.getDelta(), 0.3);
+        this.time += this.dt;
+        if (this.rabbit && this.line) {
+          let aspect = this.camera ? this.camera.aspect : 1;
+          let maxCx = Math.min(0.4, aspect * 0.12);
+          let maxCy = 0.2;
+          let cx = THREE.MathUtils.clamp(this.targetHeroUVPos.x - 0.5, -maxCx, maxCx);
+          let cy = THREE.MathUtils.clamp(this.targetHeroUVPos.y - 0.5, -maxCy, maxCy);
+          this.targetHeroAbsMousePos.set(cx * this.floorSize, -cy * this.floorSize);
+
+          let dx = this.targetHeroAbsMousePos.x - this.rabbit.position.x;
+          let dy = this.targetHeroAbsMousePos.y - this.rabbit.position.z;
+          this.heroSpeed.x += dx * this.dt * 0.5;
+          this.heroSpeed.y += dy * this.dt * 0.5;
+          this.heroSpeed.multiplyScalar(Math.pow(this.dt, 0.005));
+
+          this.rabbit.position.x += this.heroSpeed.x;
+          this.rabbit.position.z += this.heroSpeed.y;
+
+          if (Math.sqrt(dx * dx + dy * dy) > 0.3) {
+            let targetRot = -Math.atan2(dy, dx) + Math.PI / 2;
+            this.rabbit.rotation.y += this.getShortestAngle(targetRot - this.rabbit.rotation.y) * 3 * this.dt;
+          }
+
+          if (!this.isJumping) this.earLeft.rotation.x = this.earRight.rotation.x = -this.heroSpeed.length() * 2;
+
+          let p = this.line.geometry.attributes.position.array;
+          p[0] = this.targetHeroAbsMousePos.x; p[2] = this.targetHeroAbsMousePos.y;
+          p[3] = this.rabbit.position.x; p[4] = this.rabbit.position.y; p[5] = this.rabbit.position.z;
+          this.line.geometry.attributes.position.needsUpdate = true;
+          this.line.computeLineDistances();
+
+          this.heroNewUVPos.set(0.5 + this.rabbit.position.x / this.floorSize, 0.5 - this.rabbit.position.z / this.floorSize);
+          this.floorSimMat.uniforms.blade1PosNew.value = this.heroNewUVPos;
+          this.floorSimMat.uniforms.blade1PosOld.value = this.heroOldUVPos;
+          this.floorSimMat.uniforms.strength.value = this.isJumping ? 0 : 1 / (1 + this.heroSpeed.length() * 10);
+          this.bufferSim.render();
+          this.renderer.setRenderTarget(null);
+          this.floor.material.uniforms.tScratches.value = this.bufferSim.output.texture;
+          this.heroOldUVPos.copy(this.heroNewUVPos);
+
+          this.carrot.rotation.y += this.dt;
+          this.testCollision();
+        }
+      }
+      onWindowResize() {
+        const style = window.getComputedStyle(this.container);
+        this.winWidth = this.container.clientWidth - parseFloat(style.paddingLeft || 0) - parseFloat(style.paddingRight || 0);
+        this.winHeight = this.container.clientHeight - parseFloat(style.paddingTop || 0) - parseFloat(style.paddingBottom || 0);
+        this.camera.aspect = this.winWidth / this.winHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.winWidth, this.winHeight);
+      }
+      onMouseMove(event) {
+        if (!this.renderer || !this.renderer.domElement) return;
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        this.raycast();
+      }
+      onMouseDown() { if (this.rabbit && !this.isJumping) this.jump(); }
+      jump() {
+        this.isJumping = true;
+        let turns = Math.floor(this.heroSpeed.length() * 5) + 1;
+        let dur = .5 + turns * .2;
+        gsap.to(this.rabbitBody.rotation, { duration: dur, ease: "none", y: Math.PI * 2 * turns, onComplete: () => { this.rabbitBody.rotation.y = 0; } });
+        gsap.to([this.earLeft.rotation, this.earRight.rotation], { duration: dur * .8, x: Math.PI / 4 });
+        gsap.to([this.earLeft.rotation, this.earRight.rotation], { duration: dur * .2, delay: dur * .8, x: 0 });
+        gsap.to(this.jumpParams, { duration: dur * .5, ease: "power2.out", jumpProgress: .5, onUpdate: () => { this.rabbit.position.y = Math.pow(Math.sin(this.jumpParams.jumpProgress * Math.PI), 4) * turns; } });
+        gsap.to(this.jumpParams, { duration: dur * .5, ease: "power2.in", delay: dur * .5, jumpProgress: 1, onUpdate: () => { this.rabbit.position.y = Math.pow(Math.sin(this.jumpParams.jumpProgress * Math.PI), 1) * turns; }, onComplete: () => { this.rabbit.position.y = 0; this.jumpParams.jumpProgress = 0; this.isJumping = false; } });
+      }
+      raycast() {
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        var intersects = this.raycaster.intersectObjects([this.floor]);
+        if (intersects.length > 0) { this.targetHeroUVPos.copy(intersects[0].uv); }
+      }
+      getShortestAngle(v) { let a = v % (Math.PI * 2); if (a < -Math.PI) a += Math.PI * 2; else if (a > Math.PI) a -= Math.PI * 2; return a; }
+      testCollision() {
+        if (this.isExploding) return;
+        if (this.rabbit.position.distanceTo(this.carrot.position) <= 1.5) { this.carrot.visible = false; this.explode(this.carrot.position); }
+      }
+      explode(pos) {
+        this.isExploding = true;
+        [...this.particles1, ...this.particles2].forEach(m => {
+          m.position.copy(pos); m.scale.set(2, 2, 2);
+          gsap.to(m.position, { x: pos.x + (Math.random() - .5) * 2, y: pos.y + Math.random() * 2, z: pos.z + (Math.random() - .5) * 2, duration: 1, ease: "power4.out" });
+          gsap.to(m.scale, { x: 0, y: 0, z: 0, duration: 1, ease: "power4.out", onComplete: () => { this.spawnCarrot(); this.isExploding = false; } });
+        });
+      }
+      spawnCarrot() {
+        this.carrot.position.set((Math.random() - .5) * 10, -1, (Math.random() - .5) * 10);
+        this.carrot.scale.set(0, 0, 0); this.carrot.visible = true;
+        gsap.to(this.carrot.scale, { duration: 1.5, ease: "elastic.out", x: 1, y: 1, z: 1 });
+        gsap.to(this.carrot.position, { duration: 1.5, ease: "elastic.out", y: .2 + Math.random() });
+      }
+      modifyFloorShader() {
+        let renderTarget = this.floor.getRenderTarget();
+        this.floor.material.lights = true;
+        this.floor.material.transparent = true;
+        this.floor.material.uniforms = THREE.UniformsUtils.merge([THREE.UniformsLib['common'], THREE.UniformsLib['shadowmap'], THREE.UniformsLib['lights'], this.floor.material.uniforms, { tScratches: { value: this.bufferSim.output.texture } }]);
+        this.floor.material.uniforms.tDiffuse.value = renderTarget.texture;
+        this.floor.material.vertexShader = document.getElementById('reflectorVertexShader').textContent;
+        this.floor.material.fragmentShader = document.getElementById('reflectorFragmentShader').textContent;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => new App());
+  </script>
+
+</body>
+
+</html>

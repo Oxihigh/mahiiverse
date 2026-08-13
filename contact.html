@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — MahiiVerse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --or: #FF4D00;
+      --orl: #FF7240;
+      --org: rgba(255, 77, 0, .08);
+      --bg: #080808;
+      --bg2: #0d0d0d;
+      --bg3: #131313;
+      --bg4: #1a1a1a;
+      --wh: #EDEAE4;
+      --wh2: #a0998f;
+      --wh3: #5a5550;
+      --bd: rgba(255, 77, 0, .12);
+      --bdw: rgba(237, 234, 228, .06);
+      --px: clamp(28px, 6vw, 108px);
+      --nav-h: 64px;
+      --ease: cubic-bezier(.16, 1, .3, 1)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--wh);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    #cur,
+    #cur2 {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%)
+    }
+
+    #cur {
+      width: 8px;
+      height: 8px;
+      background: var(--or);
+      transition: width .15s, height .15s
+    }
+
+    #cur2 {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255, 77, 0, .45);
+      transition: width .18s, height .18s
+    }
+
+    body.hov #cur {
+      width: 16px;
+      height: 16px
+    }
+
+    body.hov #cur2 {
+      width: 48px;
+      height: 48px;
+      border-color: rgba(255, 77, 0, .7)
+    }
+
+    #grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: .28;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 5000;
+      height: var(--nav-h);
+      padding: 0 var(--px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0px solid var(--bdw);
+      backdrop-filter: blur(32px);
+      background: rgba(8, 8, 8, .92)
+    }
+
+    .nav-logo {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      transition: opacity .2s
+    }
+
+    .nav-logo:hover {
+      opacity: .8
+    }
+
+    .nav-logo img {
+      height: 100%;
+      width: auto;
+      display: block
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .nl {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--wh2);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color .2s;
+      position: relative
+    }
+
+    .nl:hover {
+      color: var(--wh)
+    }
+
+    .nl.on {
+      color: var(--wh)
+    }
+
+    .nl.on::before {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 14px;
+      right: 14px;
+      height: 1px;
+      background: var(--or)
+    }
+
+    .nav-cta {
+      padding: 9px 20px;
+      border: 1px solid var(--or);
+      color: var(--or);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      transition: all .25s;
+      margin-left: 8px
+    }
+
+    .nav-cta:hover {
+      background: var(--or);
+      color: var(--bg)
+    }
+
+    .mq-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--bdw);
+      border-bottom: 1px solid var(--bdw);
+      padding: 11px 0;
+      background: var(--bg2)
+    }
+
+    .mq-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: mqScroll 28s linear infinite
+    }
+
+    .mq-inner span {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wh3);
+      padding: 0 22px
+    }
+
+    .mq-inner .sep {
+      color: var(--or);
+      opacity: .6;
+      padding: 0 2px
+    }
+
+    @keyframes mqScroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .rv-l {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .rv-l.in {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .stagger>* {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease)
+    }
+
+    .stagger.in>* {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .stagger.in>*:nth-child(1) {
+      transition-delay: .05s
+    }
+
+    .stagger.in>*:nth-child(2) {
+      transition-delay: .12s
+    }
+
+    .stagger.in>*:nth-child(3) {
+      transition-delay: .19s
+    }
+
+    .stagger.in>*:nth-child(4) {
+      transition-delay: .26s
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block
+    }
+
+    .split-line .word {
+      display: inline-block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform .8s var(--ease), opacity .8s var(--ease)
+    }
+
+    .split-line.in .word {
+      transform: translateY(0);
+      opacity: 1
+    }
+
+    .split-line.in .word:nth-child(1) {
+      transition-delay: .0s
+    }
+
+    .split-line.in .word:nth-child(2) {
+      transition-delay: .08s
+    }
+
+    .split-line.in .word:nth-child(3) {
+      transition-delay: .16s
+    }
+
+    .btn-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--or);
+      color: var(--bg);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none
+    }
+
+    .btn-p::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .18);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--ease)
+    }
+
+    .btn-p:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 77, 0, .28)
+    }
+
+    .btn-p:hover::after {
+      transform: scaleX(1)
+    }
+
+    .btn-o {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: transparent;
+      color: var(--wh);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid var(--bdw);
+      transition: all .25s;
+      text-decoration: none
+    }
+
+    .btn-o:hover {
+      border-color: rgba(255, 77, 0, .5);
+      color: var(--or)
+    }
+
+    .sec {
+      padding: 110px var(--px)
+    }
+
+    .sec-sm {
+      padding: 72px var(--px)
+    }
+
+    .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px
+    }
+
+    .label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--or)
+    }
+
+    .display {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: -1px;
+      line-height: .9
+    }
+
+    .d1 {
+      font-size: clamp(72px, 11vw, 172px)
+    }
+
+    .d2 {
+      font-size: clamp(52px, 7.5vw, 112px)
+    }
+
+    .d3 {
+      font-size: clamp(36px, 5vw, 72px)
+    }
+
+    .or {
+      color: var(--or)
+    }
+
+    .ol {
+      -webkit-text-stroke: 1.5px var(--or);
+      color: transparent
+    }
+
+    /* CONTACT HERO */
+    .ct-hero {
+      padding-top: var(--nav-h);
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--bdw)
+    }
+
+    .ct-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 100% 0%, rgba(255, 77, 0, .07) 0%, transparent 60%);
+      pointer-events: none
+    }
+
+    .ct-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--bdw) 1px, transparent 1px), linear-gradient(90deg, var(--bdw) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: .3;
+      pointer-events: none
+    }
+
+    .ct-hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 80px var(--px)
+    }
+
+    .ct-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 40px
+    }
+
+    .chip {
+      padding: 16px 24px;
+      border: 1px solid var(--bdw);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: border-color .3s
+    }
+
+    .chip:hover {
+      border-color: rgba(255, 77, 0, .35)
+    }
+
+    .chip-lbl {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or)
+    }
+
+    .chip-val {
+      font-size: 18px;
+      font-weight: 800
+    }
+
+    /* CONTACT LAYOUT */
+    .ct-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      border-bottom: 1px solid var(--bdw)
+    }
+
+    .ct-info {
+      padding: 72px var(--px) 72px max(28px, 4vw);
+      border-right: 1px solid var(--bdw)
+    }
+
+    .ct-info h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-bottom: 36px
+    }
+
+    .ct-d {
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--bdw)
+    }
+
+    .ct-d:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0
+    }
+
+    .ct-lbl {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 8px
+    }
+
+    .ct-val {
+      font-size: 14px;
+      color: var(--wh);
+      line-height: 1.7
+    }
+
+    .ct-val a {
+      color: var(--wh);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .ct-val a:hover {
+      color: var(--or)
+    }
+
+    .soc-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .soc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--wh2);
+      border: 1px solid var(--bdw);
+      padding: 7px 13px;
+      cursor: pointer;
+      background: none;
+      font-family: 'Syne', sans-serif;
+      transition: all .25s
+    }
+
+    .soc-btn:hover {
+      color: var(--or);
+      border-color: var(--or)
+    }
+
+    .ct-promise {
+      margin-top: 32px;
+      padding: 24px;
+      background: rgba(255, 77, 0, .06);
+      border: 1px solid var(--bd)
+    }
+
+    .ct-promise .ct-lbl {
+      margin-bottom: 10px
+    }
+
+    .ct-promise p {
+      font-size: 12px;
+      color: var(--wh2);
+      line-height: 1.75
+    }
+
+    /* FORM */
+    .ct-form-wrap {
+      padding: 72px max(28px, 4vw) 72px var(--px)
+    }
+
+    .ct-form-wrap h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-bottom: 36px
+    }
+
+    .f-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px
+    }
+
+    .fg {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 16px
+    }
+
+    .fg:last-child {
+      margin-bottom: 0
+    }
+
+    .fl {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or)
+    }
+
+    .fi,
+    .fs,
+    .ft {
+      background: var(--bg3);
+      border: 1px solid var(--bdw);
+      color: var(--wh);
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+      width: 100%;
+      appearance: none
+    }
+
+    .fi:focus,
+    .fs:focus,
+    .ft:focus {
+      border-color: var(--or);
+      box-shadow: 0 0 0 3px rgba(255, 77, 0, .08)
+    }
+
+    .fi::placeholder,
+    .ft::placeholder {
+      color: var(--wh3)
+    }
+
+    .fs option {
+      background: var(--bg3)
+    }
+
+    .ft {
+      resize: vertical;
+      min-height: 128px
+    }
+
+    .f-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 17px;
+      background: var(--or);
+      color: var(--bg);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all .25s
+    }
+
+    .f-submit:hover {
+      background: var(--orl);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255, 77, 0, .28)
+    }
+
+    .fnote {
+      font-size: 11px;
+      color: var(--wh3);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.65
+    }
+
+    .fnote a {
+      color: var(--or);
+      text-decoration: none
+    }
+
+    .sbox {
+      display: none;
+      background: rgba(255, 77, 0, .06);
+      border: 1px solid rgba(255, 77, 0, .3);
+      padding: 48px 32px;
+      margin-top: 24px;
+      text-align: center
+    }
+
+    .sbox.on {
+      display: block
+    }
+
+    .sbox-ic {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 18px
+    }
+
+    .sbox h4 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 10px
+    }
+
+    .sbox p {
+      font-size: 14px;
+      color: var(--wh2)
+    }
+
+    /* FAQ */
+    .faq-g {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      margin-top: 56px
+    }
+
+    .faq-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--bdw)
+    }
+
+    .faq-item h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: var(--wh2);
+      line-height: 1.8
+    }
+
+    /* CTA */
+    .cta-sec {
+      padding: 140px var(--px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg)
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(255, 77, 0, .07) 0%, transparent 65%);
+      pointer-events: none
+    }
+
+    .cta-sec .d2 {
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-sec p {
+      font-size: 17px;
+      color: var(--wh2);
+      max-width: 500px;
+      margin: 24px auto 48px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bdw);
+      padding: 80px var(--px) 32px
+    }
+
+    .foot-g {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 56px
+    }
+
+    .foot-logo {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px
+    }
+
+    .foot-logo img {
+      height: 100%;
+      width: auto;
+      display: block
+    }
+
+    .foot-brand p {
+      font-size: 13px;
+      color: var(--wh2);
+      line-height: 1.8;
+      max-width: 260px;
+      margin-bottom: 24px
+    }
+
+    .foot-social {
+      display: flex;
+      gap: 8px
+    }
+
+    .fsoc {
+      border: 1px solid var(--bdw);
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--wh3);
+      background: none;
+      transition: all .2s;
+      font-family: 'Syne', sans-serif;
+      cursor: pointer
+    }
+
+    .fsoc:hover {
+      border-color: var(--or);
+      color: var(--or)
+    }
+
+    .foot-col h5 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 20px
+    }
+
+    .foot-col ul {
+      list-style: none
+    }
+
+    .foot-col li {
+      margin-bottom: 12px
+    }
+
+    .foot-col li a {
+      font-size: 13px;
+      color: var(--wh2);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .foot-col li a:hover {
+      color: var(--wh)
+    }
+
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--bdw);
+      font-size: 11px;
+      color: var(--wh3);
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .foot-bottom .o {
+      color: var(--or)
+    }
+
+    @media(max-width:1024px) {
+      .ct-layout {
+        grid-template-columns: 1fr
+      }
+
+      .ct-info {
+        border-right: none;
+        border-bottom: 1px solid var(--bdw)
+      }
+
+      .ct-info,
+      .ct-form-wrap {
+        padding: 56px var(--px)
+      }
+
+      .foot-g {
+        grid-template-columns: 1fr 1fr;
+        gap: 44px
+      }
+
+      .faq-g {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      :root {
+        --px: clamp(20px, 5vw, 32px)
+      }
+
+      .f-row {
+        grid-template-columns: 1fr
+      }
+
+      .foot-g {
+        grid-template-columns: 1fr
+      }
+
+      .ct-chips {
+        flex-direction: column
+      }
+
+      .d1 {
+        font-size: clamp(56px, 14vw, 112px)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cur"></div>
+  <div id="cur2"></div>
+  <div id="grain"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="MahiiVerse"></a>
+    <div class="nav-links">
+      <a class="nl" href="index.html">Home</a>
+      <a class="nl" href="about.html">About</a>
+      <a class="nl on" href="contact.html">Contact</a>
+      <a class="nl" href="careers.html">Careers</a>
+      <a class="nav-cta" href="contact.html">Start a Project</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ct-hero">
+    <div class="ct-hero-bg"></div>
+    <div class="ct-hero-grid"></div>
+    <div class="ct-hero-inner">
+      <div class="label rv">Get In Touch</div>
+      <h1 class="display d1">
+        <div class="split-line"><span class="word">LET'S</span>&nbsp;<span class="word">TALK</span></div>
+        <div class="split-line" style="transition-delay:.1s"><span class="word or">SOLUTIONS.</span></div>
+      </h1>
+      <p class="rv"
+        style="font-size:17px;color:var(--wh2);max-width:520px;line-height:1.85;margin-top:20px;transition-delay:.2s">
+        Whether you have a fully formed brief, a vague sense that something needs to change, or a problem you can't
+        quite articulate yet — we want to hear from you. The first call is always complimentary.</p>
+      <div class="ct-chips stagger" style="transition-delay:.3s">
+        <div class="chip">
+          <div class="chip-lbl">Response Time</div>
+          <div class="chip-val">24 Hours</div>
+        </div>
+        <div class="chip">
+          <div class="chip-lbl">First Consultation</div>
+          <div class="chip-val">Free</div>
+        </div>
+        <div class="chip">
+          <div class="chip-lbl">Coverage</div>
+          <div class="chip-val">Pan India</div>
+        </div>
+        <div class="chip">
+          <div class="chip-lbl">Office Hours</div>
+          <div class="chip-val">Mon–Sat 9–6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mq-wrap">
+    <div class="mq-inner">
+      <span>Free Discovery Call</span><span class="sep">◆</span><span>No Commitment Required</span><span
+        class="sep">◆</span><span>We Come to You</span><span class="sep">◆</span><span>Honest Assessment</span><span
+        class="sep">◆</span><span>24hr Response</span><span class="sep">◆</span><span>Pan-India Coverage</span><span
+        class="sep">◆</span>
+      <span>Free Discovery Call</span><span class="sep">◆</span><span>No Commitment Required</span><span
+        class="sep">◆</span><span>We Come to You</span><span class="sep">◆</span><span>Honest Assessment</span><span
+        class="sep">◆</span><span>24hr Response</span><span class="sep">◆</span><span>Pan-India Coverage</span><span
+        class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="ct-layout">
+    <div class="ct-info rv-l">
+      <h3>CONTACT INFO</h3>
+      <div class="ct-d">
+        <div class="ct-lbl">Primary Email</div>
+        <div class="ct-val"><a href="mailto:maheshwarreddymr39@gmail.com">maheshwarreddymr39@gmail.com</a><br><a href=""
+            style="font-size:13px;color:var(--wh2)"></a>
+        </div>
+      </div>
+      <div class="ct-d">
+        <div class="ct-lbl">Phone</div>
+        <div class="ct-val"><a href="tel:+919071160399">+91 90711 60399</a></div>
+      </div>
+      <div class="ct-d">
+        <div class="ct-lbl">Location</div>
+        <div class="ct-val">India<br><span style="font-size:13px;color:var(--wh2)">Pan-India service. We travel to
+            you.</span></div>
+      </div>
+      <div class="ct-d">
+        <div class="ct-lbl">Response Time</div>
+        <div class="ct-val" style="color:var(--or);font-weight:700">Within 24 working hours ⚡</div>
+      </div>
+      <!-- <div class="ct-d">
+        <div class="ct-lbl">Social</div>
+        <div class="ct-val">
+          <div class="soc-row"><button class="soc-btn">Instagram</button><button
+              class="soc-btn">LinkedIn</button><button class="soc-btn">Twitter</button></div>
+        </div>
+      </div> -->
+      <div class="ct-promise">
+        <div class="ct-lbl">Our Promise on First Contact</div>
+        <p>When you reach out, you will speak directly with a senior team member — not a sales rep. We'll listen to your
+          challenge, ask clarifying questions, and give an honest perspective on how we'd approach it. No pitch. No
+          pressure. Just a genuine conversation.</p>
+      </div>
+    </div>
+
+    <div class="ct-form-wrap rv">
+      <h3>SEND A MESSAGE</h3>
+      <form id="cForm" onsubmit="doSubmit(event)">
+        <div class="f-row">
+          <div class="fg" style="margin-bottom:0"><label class="fl">Full Name *</label><input class="fi" type="text"
+              name="name" placeholder="Your full name" required></div>
+          <div class="fg" style="margin-bottom:0"><label class="fl">Company (If applicable) *</label><input class="fi"
+              name="company" type="text" placeholder="Company or brand" required></div>
+        </div>
+        <div class="f-row" style="margin-top:16px">
+          <div class="fg" style="margin-bottom:0"><label class="fl">Email *</label><input class="fi" type="email"
+              name="email" placeholder="you@company.com" required></div>
+          <div class="fg" style="margin-bottom:0"><label class="fl">Phone</label><input class="fi" type="tel"
+              name="phone" placeholder="+91 00000 00000"></div>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label class="fl">Service / Inquiry Type *</label>
+          <select class="fs" name="service" required>
+            <option value="" disabled selected>Select the most relevant service area</option>
+            <option>Technology Product Development</option>
+            <option>AI & Automation Agent Development</option>
+            <option>Brand Identity & Visual Design</option>
+            <option>UI/UX Design</option>
+            <option>Digital Marketing & Growth</option>
+
+            <option>F&B Brand & Campaigns</option>
+            <option>Automobile Marketing</option>
+
+            <option>Multiple / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <div class="fg" style="margin-bottom:0">
+            <label class="fl">Industry *</label>
+            <select class="fs" name="industry" required>
+              <option value="" disabled selected>Your industry</option>
+              <option>Startup</option>
+              <option>Enterprise</option>
+              <option>Food & Beverage</option>
+              <option>Automobile</option>
+              <option>Education / Institution</option>
+              <option>Healthcare</option>
+              <option>Retail / D2C</option>
+              <option>Real Estate</option>
+              <option>Entertainment</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-bottom:0">
+            <label class="fl">Budget Range</label>
+            <select class="fs" name="budget">
+              <option value="" disabled selected>Approximate budget</option>
+              <option>Under ₹50,000</option>
+              <option>₹50K – ₹2L</option>
+              <option>₹2L – ₹10L</option>
+              <option>₹10L – ₹50L</option>
+              <option>₹50L+</option>
+              <option>Open to discuss</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Describe Your Challenge *</label>
+          <textarea class="ft" name="challenge"
+            placeholder="Tell us about the problem you're trying to solve, what you've already tried, what success looks like, and any constraints we should know about."
+            required></textarea>
+        </div>
+        <button type="submit" class="f-submit">Submit Enquiry — We'll Respond Within 24 Hours →</button>
+        <p class="fnote">Your information is kept strictly confidential. Prefer email? <a
+            href="mailto:">hello@mahiiverse.in</a></p>
+      </form>
+      <div class="sbox" id="sBox">
+        <span class="sbox-ic">✅</span>
+        <h4>Enquiry Received</h4>
+        <p>A senior MahiiVerse team member will review your message and respond within 24 working hours. We look forward
+          to learning about your challenge.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="sec" style="background:var(--bg2);border-top:1px solid var(--bdw)">
+    <div class="label rv">Common Questions</div>
+    <h2 class="display d2 rv" style="margin-bottom:0">FREQUENTLY<br><span class="or">ASKED.</span></h2>
+    <div class="faq-g">
+      <div class="faq-item rv">
+        <h4>How does the discovery process work?</h4>
+        <p>Every engagement starts with a structured discovery phase — typically 1–2 weeks. We interview stakeholders,
+          audit existing systems, and document findings before proposing any solution. This is non-negotiable and is the
+          foundation of everything we deliver.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.06s">
+        <h4>Do you work with early-stage startups?</h4>
+        <p>Absolutely. We have specific frameworks for startup engagements — fast MVPs, lean validation builds, and
+          scalable architectures that grow with your product. We're experienced in the startup context and adapt
+          accordingly.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.12s">
+        <h4>What does an AI agent engagement look like?</h4>
+        <p>We start by mapping the specific workflow you want to automate, define the agent's scope and success
+          criteria, then build and test iteratively — with UAT done in your real environment before full deployment.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.18s">
+        <h4>Can you handle both tech and marketing for us?</h4>
+        <p>Yes — and we'd encourage it. Having one partner that understands both your product and your brand creates
+          strategic coherence that separate agencies rarely achieve. Many of our best outcomes have come from integrated
+          engagements.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.24s">
+        <h4>Do you travel for on-site work?</h4>
+        <p>Yes. We operate pan-India and will travel to your location if required for workshops, and key
+          milestones. We combine in-person and remote working based on what makes sense for your project.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-glow"></div>
+    <div class="label rv" style="justify-content:center;margin-bottom:24px">Still Have Questions?</div>
+    <h2 class="display d2 rv">JUST CALL<br><span class="or">OR EMAIL.</span><br>WE'RE REAL PEOPLE.</h2>
+    <p class="rv" style="transition-delay:.2s">No auto-replies. No chatbots. When you contact MahiiVerse, a human being
+      reads your message and responds personally.</p>
+    <div class="cta-btns rv" style="transition-delay:.3s">
+      <a class="btn-p" href="tel:+919071160399">📞 Call Us Now</a>
+      <a class="btn-o" href="mailto:maheshwarreddymr39@gmail.com">✉️ maheshwarreddymr39@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-g">
+      <div class="foot-brand">
+        <div class="foot-logo"><img src="logo.png" alt="MahiiVerse"></div>
+        <p>India's premier technology and design consultancy. We build, brand, automate, and activate for businesses
+          going somewhere fast.</p>
+        <!-- <div class="foot-social"><button class="fsoc">IG</button><button class="fsoc">LI</button><button
+            class="fsoc">X</button></div> -->
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Tech Development</a></li>
+          <li><a href="#">AI Agents</a></li>
+          <li><a href="#">Brand & Marketing</a></li>
+          <li><a href="index.html">UI/UX Design</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:maheshwarreddymr39@gmail.com">maheshwarreddymr39@gmail.com</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="#">Pan-India Operations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 MahiiVerse Technologies Pvt. Ltd. All rights reserved.</span><span>Crafted
+        with <span class="o">precision</span> in India</span></div>
+  </footer>
+
+  <script>
+    const C = document.getElementById('cur'), CR = document.getElementById('cur2');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY });
+    (function tick() { C.style.left = mx + 'px'; C.style.top = my + 'px'; rx += (mx - rx) * .1; ry += (my - ry) * .1; CR.style.left = rx + 'px'; CR.style.top = ry + 'px'; requestAnimationFrame(tick) })();
+    document.addEventListener('mouseover', e => { document.body.classList.toggle('hov', !!e.target.closest('a,button,.chip,.faq-item')) });
+    const obs = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); obs.unobserve(en.target) } }) }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv,.rv-l,.stagger,.split-line').forEach(el => obs.observe(el));
+
+    function doSubmit(e) {
+      e.preventDefault();
+      const b = document.querySelector('.f-submit');
+      const form = document.getElementById('cForm');
+      b.textContent = 'Sending…'; b.style.opacity = '.6';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Send via FormSubmit using AJAX
+      fetch("https://formsubmit.co/ajax/maheshwarreddymr39@gmail.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          form.style.display = 'none';
+          document.getElementById('sBox').classList.add('on');
+        })
+        .catch(error => {
+          console.error(error);
+          b.textContent = 'Error. Try Again.';
+          b.style.opacity = '1';
+        });
+    }
+  </script>
+</body>
+
+</html>
