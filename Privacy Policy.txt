@@ -1,0 +1,162 @@
+﻿Privacy Policy
+MahiiVerse Technologies Pvt. Ltd. ("MahiiVerse," "we," "us," or "our")
+Last Updated: 18 August 2026
+________________
+
+
+1. Introduction
+MahiiVerse Technologies Pvt. Ltd. is a technology and design consultancy based in India. We provide services including technology product development (web, mobile, and SaaS), AI agent development and automation, brand strategy and identity design, UI/UX design, enterprise automation, and marketing and digital campaigns.
+This Privacy Policy explains how we collect, use, disclose, store, and protect your personal information when you visit our website, contact us, book a discovery call, apply for a role with us, or otherwise engage our services. It also describes the rights and choices available to you regarding your personal data.
+We are committed to protecting your privacy and handling your personal data in a transparent, lawful, and secure manner. This Policy is designed to comply with India's Digital Personal Data Protection Act, 2023 (the "DPDP Act") and, where applicable to individuals in other jurisdictions, the European Union's General Data Protection Regulation (the "GDPR") and other applicable data protection laws.
+By accessing or using our website and services, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with it, please do not use our website or provide us with your personal information.
+________________
+
+
+2. Scope of This Policy
+This Policy applies to:
+* Visitors to our website at https://www.mahiiverse.com and any associated subdomains.
+* Prospective, current, and former clients who engage with us or our services.
+* Individuals who contact us through our forms, email, phone, or discovery-call bookings.
+* Candidates who submit career or job applications to us.
+* Any other individual whose personal data we process in the course of our business.
+This Policy does not apply to third-party websites, services, or platforms that may be linked from our website. We encourage you to review the privacy policies of any third parties before providing them with your personal data.
+________________
+
+
+3. Definitions
+To help you understand this Policy, the following terms are used:
+* Personal Data / Personal Information: Any information relating to an identified or identifiable natural person (a "Data Principal" under the DPDP Act, or "Data Subject" under the GDPR).
+* Processing: Any operation performed on personal data, such as collection, recording, storage, use, disclosure, or deletion.
+* Data Fiduciary / Data Controller: The entity that determines the purpose and means of processing personal data. For the purposes of this Policy, MahiiVerse is the Data Fiduciary/Controller.
+* Data Processor: A person or entity that processes personal data on behalf of the Data Fiduciary/Controller.
+* Consent: A freely given, specific, informed, and unambiguous indication of your agreement to the processing of your personal data.
+________________
+
+
+4. Information We Collect
+We collect personal data that you provide directly to us, information collected automatically when you use our website, and information obtained from third-party sources.
+4.1 Information You Provide Directly
+* Contact and identity information: Your name, email address, phone number, company or organization name, job title, and country or location, submitted when you fill out a contact form, book a discovery call, or send us an inquiry.
+* Project and business information: Details about your business, project requirements, budgets, objectives, and any other information you share when discussing a potential engagement.
+* Career applications: Your name, contact details, résumé/CV, work history, education, portfolio links, and any other information you submit when applying for a position.
+* Communications: The content of emails, messages, call notes, and other correspondence you exchange with us.
+* Payment and billing information: For clients, we may collect billing details such as company address, tax identification numbers, and bank or payment references necessary to invoice and receive payment. Card payments, where applicable, are processed by third-party payment providers, and we do not store full card details.
+4.2 Information Collected Automatically
+When you visit our website, we and our service providers may automatically collect certain technical information, including:
+* Device and connection data: IP address, browser type and version, operating system, device type, and language settings.
+* Usage data: Pages visited, time spent on pages, links clicked, referring URLs, and the dates and times of your visits.
+* Cookies and similar technologies: Information collected through cookies, web beacons, and similar technologies, as described in Section 10.
+4.3 Information from Third-Party Sources
+We may receive information about you from third parties, such as:
+* Analytics and marketing platforms.
+* Social media or professional networking platforms (for example, if you interact with us via LinkedIn).
+* Referrals from existing clients or business partners.
+* Publicly available sources, where permitted by law.
+4.4 Sensitive Personal Data
+We do not intentionally collect sensitive categories of personal data (such as data revealing racial or ethnic origin, religious beliefs, health, biometric, or financial account credentials) unless it is strictly necessary and you have provided it voluntarily or given explicit consent. Please avoid sharing sensitive information with us unless we specifically request it.
+________________
+
+
+5. How We Use Your Information
+We use your personal data for the following purposes:
+* To respond to inquiries and requests: Communicating with you, answering questions, scheduling and conducting discovery calls, and providing information about our services.
+* To provide and manage our services: Delivering the products and services you engage us for, managing projects, and maintaining our client relationship.
+* To process transactions: Issuing invoices, processing payments, and maintaining financial and accounting records.
+* For recruitment: Evaluating job applications, communicating with candidates, and administering our hiring process.
+* To improve our website and services: Analyzing usage patterns, diagnosing technical issues, and enhancing user experience and the performance of our website.
+* For marketing and communications: Sending newsletters, updates, service announcements, and promotional materials, where you have consented or where otherwise permitted by law. You may opt out at any time.
+* To ensure security and prevent fraud: Protecting our website, systems, clients, and business against unauthorized access, misuse, and fraudulent activity.
+* To comply with legal obligations: Meeting our obligations under applicable laws, regulations, court orders, and lawful requests from public authorities.
+We will not use your personal data for purposes that are incompatible with those described above without informing you and, where required, obtaining your consent.
+________________
+
+
+6. Legal Bases for Processing
+Where the DPDP Act applies, we process personal data primarily on the basis of your consent or for legitimate uses permitted under the Act, such as fulfilling a purpose for which you have voluntarily provided your data.
+Where the GDPR applies (for example, if you are located in the European Economic Area or United Kingdom), we rely on one or more of the following legal bases:
+* Consent: Where you have given clear consent for us to process your personal data for a specific purpose (for example, marketing communications).
+* Contract: Where processing is necessary to enter into or perform a contract with you or your organization.
+* Legal obligation: Where processing is necessary to comply with a legal or regulatory obligation.
+* Legitimate interests: Where processing is necessary for our legitimate business interests (such as improving our services, securing our systems, or growing our business), provided these interests are not overridden by your rights and freedoms.
+________________
+
+
+7. How We Share and Disclose Information
+We do not sell your personal data. We may share your personal data in the following limited circumstances:
+* Service providers and processors: With trusted third-party vendors who perform services on our behalf, such as hosting providers, cloud infrastructure, analytics providers, email and communication platforms, customer-relationship management tools, and payment processors. These parties are permitted to use your data only as necessary to provide services to us and are bound by confidentiality and data protection obligations.
+* Business partners and subcontractors: Where necessary to deliver a project or service you have engaged us for, and subject to appropriate confidentiality arrangements.
+* Legal and regulatory disclosures: Where required to comply with applicable law, regulation, legal process, or an enforceable governmental or judicial request.
+* Protection of rights and safety: Where necessary to protect the rights, property, or safety of MahiiVerse, our clients, our users, or others, and to enforce our agreements.
+* Business transfers: In connection with a merger, acquisition, financing, reorganization, or sale of all or part of our business, personal data may be transferred as part of that transaction, subject to appropriate safeguards.
+________________
+
+
+8. International Data Transfers
+MahiiVerse is based in India, and your personal data may be stored and processed in India or in other countries where we or our service providers operate. Some of these countries may have data protection laws that differ from those in your country of residence.
+Where we transfer personal data across borders, we take reasonable steps to ensure that appropriate safeguards are in place, such as contractual protections with the recipients, and that transfers comply with applicable data protection laws, including the DPDP Act and, where relevant, the GDPR (for example, through standard contractual clauses or equivalent mechanisms).
+________________
+
+
+9. Data Retention
+We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, including to provide our services, maintain business records, comply with legal, tax, and accounting obligations, resolve disputes, and enforce our agreements.
+The retention period depends on the nature of the data and the purpose of processing. For example:
+* Inquiry and contact data is retained for as long as needed to respond to and follow up on your request, and for a reasonable period thereafter.
+* Client and transaction records are retained for the duration of our engagement and for any additional period required by applicable financial and legal regulations.
+* Recruitment data is retained for the duration of the hiring process and, where you consent, for a reasonable period afterward to consider you for future opportunities.
+When personal data is no longer required, we will securely delete, anonymize, or otherwise dispose of it in accordance with our data retention practices and applicable law.
+________________
+
+
+10. Cookies and Tracking Technologies
+Our website uses cookies and similar technologies to enable core functionality, remember your preferences, analyze traffic, and improve your experience.
+* Essential cookies: Necessary for the website to function properly and cannot be disabled through our systems.
+* Analytics cookies: Help us understand how visitors interact with our website so we can improve it.
+* Functional cookies: Remember your preferences and settings.
+* Marketing cookies: May be used to deliver relevant content and measure the effectiveness of our campaigns.
+You can control and manage cookies through your browser settings, including blocking or deleting cookies. Please note that disabling certain cookies may affect the functionality and performance of the website. Where required by law, we will request your consent before placing non-essential cookies.
+________________
+
+
+11. Your Rights and Choices
+Depending on your location and applicable law, you may have some or all of the following rights regarding your personal data:
+* Right to access: Request confirmation of whether we process your personal data and obtain a copy of it.
+* Right to correction: Request that we correct inaccurate or incomplete personal data.
+* Right to erasure: Request that we delete your personal data, subject to legal and contractual limitations.
+* Right to withdraw consent: Where processing is based on consent, withdraw that consent at any time, without affecting the lawfulness of processing carried out before withdrawal.
+* Right to restrict or object: Request that we restrict or object to certain processing of your personal data.
+* Right to data portability: Where applicable, request to receive your personal data in a structured, commonly used, and machine-readable format.
+* Right to grievance redressal: Under the DPDP Act, you have the right to a readily available means to raise grievances regarding the processing of your personal data.
+* Right to nominate: Under the DPDP Act, you have the right to nominate another individual to exercise your rights in the event of your death or incapacity.
+* Right to lodge a complaint: You may lodge a complaint with the relevant data protection authority (for example, the Data Protection Board of India, or your local supervisory authority under the GDPR).
+To exercise any of these rights, please contact us using the details in Section 14. We may need to verify your identity before responding to your request. We will respond within the timeframes required by applicable law.
+________________
+
+
+12. Data Security
+We implement reasonable technical and organizational measures designed to protect your personal data against unauthorized access, alteration, disclosure, loss, or destruction. These measures may include encryption in transit, access controls, secure hosting, and internal policies restricting access to personal data on a need-to-know basis.
+However, no method of transmission over the internet or method of electronic storage is completely secure. While we strive to protect your personal data, we cannot guarantee its absolute security. In the event of a personal data breach that is likely to affect you, we will notify you and the relevant authorities as required by applicable law.
+________________
+
+
+13. Children's Privacy
+Our website and services are directed at businesses and professionals and are not intended for children. We do not knowingly collect personal data from children under the age of 18 without verifiable parental or guardian consent, as required under the DPDP Act. If you believe we have inadvertently collected personal data from a child, please contact us so we can take appropriate action to delete it.
+________________
+
+
+14. Contact Us and Grievance Redressal
+If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal data, or if you wish to exercise your rights, please contact us:
+MahiiVerse Technologies Pvt. Ltd.
+* Email: projects@mahiiverse.in
+* Phone: +91 90711 60399
+* Website: https://www.mahiiverse.com
+For data-protection and grievance-related matters, please mark your communication to the attention of our Grievance Officer / Data Protection Contact. We will acknowledge and address your concern within the timeframes prescribed under applicable law.
+________________
+
+
+15. Changes to This Privacy Policy
+We may update this Privacy Policy from time to time to reflect changes in our practices, technologies, legal requirements, or for other operational reasons. When we make material changes, we will update the "Last Updated" date at the top of this Policy and, where appropriate, provide additional notice (such as posting a prominent notice on our website or contacting you directly).
+We encourage you to review this Policy periodically to stay informed about how we protect your personal data. Your continued use of our website and services after any changes indicates your acceptance of the updated Policy.
+________________
+
+
+This Privacy Policy is provided for general informational purposes and reflects MahiiVerse's data-handling practices. It should be reviewed by qualified legal counsel to ensure full compliance with all laws applicable to your specific operations before publication.
