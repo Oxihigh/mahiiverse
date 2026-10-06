@@ -19,6 +19,19 @@
     content="MahiiVerse bridges the gap between academic learning and industry expectations through structured internship programs, technology training, state-level hackathons, and placement pool access.">
   <link rel="icon" type="image/png" href="/logo.png">
 
+  <script>
+    // Enforce URL strictly as /internship
+    (function () {
+      try {
+        if (window.location.pathname.endsWith('/internship.html') || window.location.pathname.endsWith('/internship/')) {
+          window.history.replaceState(null, '', '/internship');
+        } else if (window.location.pathname === '/internship' && window.location.hash) {
+          window.history.replaceState(null, '', '/internship');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -3084,6 +3097,29 @@
       btn.disabled = false;
       btn.innerHTML = '<span>Submit Application / Enquiry →</span>';
     }
+
+    // Keep URL strictly /internship during internal in-page navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            try {
+              window.history.replaceState(null, '', '/internship');
+            } catch (err) {}
+          }
+        }
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      try {
+        window.history.replaceState(null, '', '/internship');
+      } catch (err) {}
+    });
   </script>
 </body>
 
