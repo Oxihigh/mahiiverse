@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Internship Programs & Industry Readiness — MahiiVerse</title>
   <meta name="description"
-    content="MahiiVerse bridges the gap between academic learning and industry expectations through structured internship programs, technology training, state-level hackathons, and placement pool access.">
+    content="MahiiVerse bridges the gap between academic learning and industry expectations through structured internship programs, technology training, national-level hackathons, and placement pool access.">
   <link rel="icon" type="image/png" href="/logo.png">
 
   <script>
@@ -38,6 +38,8 @@
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Razorpay Standard Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
     :root {
@@ -1391,6 +1393,487 @@
       margin: 0 auto;
     }
 
+    /* Programs Fee Callout Strip */
+    .fee-callout-strip {
+      background: linear-gradient(135deg, rgba(255, 77, 0, 0.12), rgba(20, 20, 20, 0.95));
+      border: 1px solid rgba(255, 77, 0, 0.35);
+      border-radius: 4px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .fcs-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .fcs-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--or);
+      font-weight: 700;
+    }
+
+    .fcs-fee {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--wh);
+      letter-spacing: -0.5px;
+    }
+
+    .fcs-fee span {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--wh2);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .fcs-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--bdw);
+    }
+
+    .fcs-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      align-items: center;
+    }
+
+    .fcs-benefits span {
+      font-size: 12.5px;
+      color: var(--wh);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fcs-benefits span i {
+      color: var(--or);
+      font-size: 11px;
+    }
+
+    /* Form Pricing Card */
+    .pricing-summary-card {
+      background: linear-gradient(180deg, rgba(255, 77, 0, 0.08) 0%, rgba(20, 20, 20, 0.8) 100%);
+      border: 1px solid rgba(255, 77, 0, 0.3);
+      padding: 20px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .psc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--bdw);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .psc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--or);
+      background: rgba(255, 77, 0, 0.12);
+      padding: 3px 8px;
+      margin-bottom: 6px;
+    }
+
+    .psc-title h4 {
+      font-size: 16px;
+      color: var(--wh);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .psc-price {
+      text-align: right;
+    }
+
+    .psc-currency {
+      font-size: 16px;
+      color: var(--or);
+      font-weight: 700;
+    }
+
+    .psc-amount {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--wh);
+      letter-spacing: -0.5px;
+    }
+
+    .psc-period {
+      font-size: 11px;
+      color: var(--wh3);
+      font-family: 'Space Mono', monospace;
+      display: block;
+    }
+
+    .psc-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      margin-bottom: 14px;
+    }
+
+    .psc-feat-item {
+      font-size: 12px;
+      color: var(--wh2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .psc-feat-item i {
+      color: var(--or);
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .psc-subnote {
+      font-size: 11px;
+      color: var(--wh2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--bdw);
+    }
+
+    .psc-subnote i {
+      color: #00d26a;
+    }
+
+    /* Institution Info Card */
+    .inst-info-card {
+      background: var(--bg3);
+      border: 1px solid var(--bdw);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .iic-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 77, 0, 0.1);
+      border: 1px solid var(--bd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--or);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .inst-info-card h4 {
+      font-size: 14px;
+      color: var(--wh);
+      margin-bottom: 6px;
+    }
+
+    .inst-info-card p {
+      font-size: 12px;
+      color: var(--wh2);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Payment Trust Strip */
+    .payment-trust-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .trust-pill {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--wh3);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--bdw);
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-pill i {
+      color: var(--orl);
+    }
+
+    /* Payment Receipt Card */
+    .payment-receipt-card {
+      background: var(--bg3);
+      border: 1px solid rgba(255, 77, 0, 0.3);
+      padding: 36px 28px !important;
+      text-align: left !important;
+    }
+
+    .receipt-icon {
+      font-size: 44px;
+      color: #00d26a;
+      margin-bottom: 14px;
+    }
+
+    .receipt-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #00d26a;
+      background: rgba(0, 210, 106, 0.1);
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      border-radius: 2px;
+      font-weight: 700;
+    }
+
+    .receipt-title {
+      font-size: 24px;
+      color: var(--wh);
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .receipt-sub {
+      font-size: 13.5px;
+      color: var(--wh2);
+      margin-bottom: 22px !important;
+      line-height: 1.6;
+    }
+
+    .receipt-details {
+      background: var(--bg2);
+      border: 1px solid var(--bdw);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rd-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .rd-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .rd-lbl {
+      color: var(--wh3);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+    }
+
+    .rd-val {
+      color: var(--wh);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .rd-val.highlight {
+      font-family: 'Space Mono', monospace;
+      color: var(--orl);
+    }
+
+    .rd-val.amount {
+      font-size: 16px;
+      color: #00d26a;
+      font-weight: 700;
+    }
+
+    .rd-val.or-text {
+      color: var(--or);
+    }
+
+    .receipt-note {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255, 77, 0, 0.06);
+      border-left: 3px solid var(--or);
+      padding: 12px 16px;
+      font-size: 12px;
+      color: var(--wh2);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .receipt-note i {
+      font-size: 16px;
+      color: var(--or);
+      margin-top: 2px;
+    }
+
+    .receipt-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #successBox, #successBox * {
+        visibility: visible;
+      }
+      #successBox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000 !important;
+        background: #fff !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .psc-features {
+        grid-template-columns: 1fr;
+      }
+      .fcs-divider {
+        display: none;
+      }
+      .rd-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .rd-val {
+        text-align: left;
+      }
+    }
+
+    /* Application Popup Modal */
+    .mv-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s var(--ease);
+    }
+
+    .mv-modal.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .mv-modal-dialog {
+      background: var(--bg2);
+      border: 1px solid rgba(255, 77, 0, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 77, 0, 0.16);
+      width: 100%;
+      max-width: 640px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 32px 32px 28px;
+      animation: modalSlideUp 0.3s var(--ease);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(22px) scale(0.98);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mv-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bdw);
+      color: var(--wh2);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+      z-index: 2;
+    }
+
+    .mv-modal-close:hover {
+      background: var(--or);
+      color: var(--bg);
+      border-color: var(--or);
+      transform: rotate(90deg);
+    }
+
+    .mv-modal-header {
+      margin-bottom: 20px;
+      padding-right: 36px;
+    }
+
+    .mv-modal-header .label {
+      margin-bottom: 6px;
+    }
+
+    .mv-modal-header h3 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--wh);
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .mv-modal-header p {
+      font-size: 13px;
+      color: var(--wh2);
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
     /* Footer */
     footer {
       background: var(--bg2);
@@ -1576,7 +2059,7 @@
       <a class="nl" href="#colleges">For Colleges</a>
       <a class="nl" href="#students">For Students</a>
       <a class="nl" href="#contact">Contact</a>
-      <a class="nav-cta" href="#contact">Apply Now</a>
+      <a class="nav-cta" href="javascript:void(0)" onclick="openApplyModal()">Apply Now</a>
     </div>
   </nav>
 
@@ -1626,13 +2109,13 @@
     <div class="mq-inner">
       <span>🎓 Industry–Academia Internship Programs</span><span class="sep">◆</span>
       <span>🎯 Customized Department Pathways</span><span class="sep">◆</span>
-      <span>🏆 Free Entry to State-Level Hackathons</span><span class="sep">◆</span>
+      <span>🏆 Free Entry to National-Level Hackathons</span><span class="sep">◆</span>
       <span>🚀 Placement Pool Access for Eligible Students</span><span class="sep">◆</span>
       <span>🏫 Industry Talks • Campus Orientations</span><span class="sep">◆</span>
       <span>🤝 Institutional MoUs & Partnerships</span><span class="sep">◆</span>
       <span>🎓 Industry–Academia Internship Programs</span><span class="sep">◆</span>
       <span>🎯 Customized Department Pathways</span><span class="sep">◆</span>
-      <span>🏆 Free Entry to State-Level Hackathons</span><span class="sep">◆</span>
+      <span>🏆 Free Entry to National-Level Hackathons</span><span class="sep">◆</span>
       <span>🚀 Placement Pool Access for Eligible Students</span><span class="sep">◆</span>
       <span>🏫 Industry Talks • Campus Orientations</span><span class="sep">◆</span>
       <span>🤝 Institutional MoUs & Partnerships</span><span class="sep">◆</span>
@@ -1652,7 +2135,7 @@
       <div class="hl-desc">Live project implementations, code repositories, and verifiable portfolios.</div>
     </div>
     <div class="hl-item rv" style="transition-delay: .2s;">
-      <div class="hl-num">STATE-LEVEL</div>
+      <div class="hl-num">NATIONAL-LEVEL</div>
       <div class="hl-title">Hackathon Ecosystem</div>
       <div class="hl-desc">Collaborate, build solutions, compete, and turn raw ideas into reality.</div>
     </div>
@@ -1774,6 +2257,22 @@
       skills, our programs focus on learning through application.
     </p>
 
+    <!-- Course Fee & Inclusions Banner -->
+    <div class="fee-callout-strip rv" style="transition-delay: .05s;">
+      <div class="fcs-left">
+        <span class="fcs-tag"><i class="fa-solid fa-graduation-cap"></i> COURSE ENROLLMENT FEE</span>
+        <span class="fcs-fee">₹3,999 <span>/ course (all-in)</span></span>
+      </div>
+      <div class="fcs-divider"></div>
+      <div class="fcs-benefits">
+        <span><i class="fa-solid fa-check"></i> Live Mentorship</span>
+        <span><i class="fa-solid fa-check"></i> Real Capstone Project</span>
+        <span><i class="fa-solid fa-check"></i> Verified Certificate</span>
+        <span><i class="fa-solid fa-check"></i> Free National Hackathon Entry</span>
+        <span><i class="fa-solid fa-check"></i> Placement Pool</span>
+      </div>
+    </div>
+
     <!-- Category Filter Bar -->
     <div class="domain-filters rv" style="transition-delay: .1s;">
       <button class="d-filter-btn active" onclick="filterDomains('all')">All Domains (15)</button>
@@ -1797,7 +2296,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Full Stack</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Web Development')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Web Development')">Apply Now →</a>
         </div>
       </div>
 
@@ -1811,7 +2310,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">iOS & Android</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Mobile App Development')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Mobile App Development')">Apply Now →</a>
         </div>
       </div>
 
@@ -1825,7 +2324,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">UI Engineering</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Front-End Development')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Front-End Development')">Apply Now →</a>
         </div>
       </div>
 
@@ -1839,8 +2338,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Algorithms</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Machine Learning with Python')">Apply Now
-            →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Machine Learning with Python')">Apply Now →</a>
         </div>
       </div>
 
@@ -1854,8 +2352,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">LLMs & RAG</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Generative AI & LLM Applications')">Apply Now
-            →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Generative AI & LLM Applications')">Apply Now →</a>
         </div>
       </div>
 
@@ -1868,9 +2365,8 @@
             multi-step, and decision-oriented tasks.</p>
         </div>
         <div class="domain-card-footer">
-          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Autonomous
-            Workflows</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Agentic AI & Automation')">Apply Now →</a>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Autonomous Workflows</span>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Agentic AI & Automation')">Apply Now →</a>
         </div>
       </div>
 
@@ -1883,9 +2379,8 @@
             support, sales, and operations.</p>
         </div>
         <div class="domain-card-footer">
-          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">NLP & Bot
-            Engines</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('AI Chatbot Development')">Apply Now →</a>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">NLP & Bot Engines</span>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('AI Chatbot Development')">Apply Now →</a>
         </div>
       </div>
 
@@ -1898,10 +2393,8 @@
             intelligence.</p>
         </div>
         <div class="domain-card-footer">
-          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Dashboards &
-            Insights</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Data Analytics & Visualization')">Apply Now
-            →</a>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Dashboards & Insights</span>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Data Analytics & Visualization')">Apply Now →</a>
         </div>
       </div>
 
@@ -1914,9 +2407,8 @@
             information architecture.</p>
         </div>
         <div class="domain-card-footer">
-          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Relational &
-            NoSQL</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Database Management & SQL')">Apply Now →</a>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Relational & NoSQL</span>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Database Management & SQL')">Apply Now →</a>
         </div>
       </div>
 
@@ -1930,7 +2422,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Microcontrollers</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Embedded C')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Embedded C')">Apply Now →</a>
         </div>
       </div>
 
@@ -1944,7 +2436,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">CAD / Routing</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('PCB Design')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('PCB Design')">Apply Now →</a>
         </div>
       </div>
 
@@ -1958,7 +2450,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Verilog / ASIC</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('VLSI')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('VLSI')">Apply Now →</a>
         </div>
       </div>
 
@@ -1972,7 +2464,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">E-Mobility</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('EV Design')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('EV Design')">Apply Now →</a>
         </div>
       </div>
 
@@ -1986,7 +2478,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">CAD / Prototyping</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('SolidWorks Product Design')">Apply Now →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('SolidWorks Product Design')">Apply Now →</a>
         </div>
       </div>
 
@@ -2000,8 +2492,7 @@
         </div>
         <div class="domain-card-footer">
           <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--wh3);">Growth Marketing</span>
-          <a class="apply-tag" href="#contact" onclick="selectDomainInForm('Digital Marketing & Analytics')">Apply Now
-            →</a>
+          <a class="apply-tag" href="javascript:void(0)" onclick="openApplyModal('Digital Marketing & Analytics')">Apply Now →</a>
         </div>
       </div>
     </div>
@@ -2124,7 +2615,7 @@
 
         <div class="inst-mini-card">
           <h4><i class="fa-solid fa-trophy"></i> Hackathons & Events</h4>
-          <p>State-level competitive hackathons and project showcases on campus.</p>
+          <p>National-level competitive hackathons and project showcases on campus.</p>
         </div>
       </div>
     </div>
@@ -2212,7 +2703,7 @@
             <span>Explore Internship Programs</span>
             <i class="fa-solid fa-code"></i>
           </a>
-          <a class="btn-o" href="#contact" onclick="setRoleToggle('student')">
+          <a class="btn-o" href="javascript:void(0)" onclick="openApplyModal()">
             <span>Apply Directly</span>
           </a>
         </div>
@@ -2230,7 +2721,7 @@
           <div class="stu-feat-card"><i class="fa-solid fa-compass"></i> Career awareness & tracks</div>
           <div class="stu-feat-card"><i class="fa-solid fa-certificate"></i> Professional certification</div>
           <div class="stu-feat-card"><i class="fa-solid fa-user-group"></i> Mentorship and guidance</div>
-          <div class="stu-feat-card"><i class="fa-solid fa-trophy"></i> State-Level Hackathons</div>
+          <div class="stu-feat-card"><i class="fa-solid fa-trophy"></i> National-Level Hackathons</div>
           <div class="stu-feat-card" style="grid-column: span 2;"><i class="fa-solid fa-rocket"></i> Placement pool
             & hiring network access</div>
         </div>
@@ -2319,10 +2810,10 @@
     <div class="hackathon-box rv">
       <div class="hack-content">
         <div class="hack-tag">
-          <i class="fa-solid fa-trophy"></i> State-Level Hackathon Ecosystem
+          <i class="fa-solid fa-trophy"></i> National-Level Hackathon Ecosystem
         </div>
         <h3 class="display" style="font-size: clamp(32px, 4vw, 54px); color: var(--wh); line-height: 1;">
-          FREE ENTRY TO <span class="or">STATE-LEVEL HACKATHONS</span>
+          FREE ENTRY TO <span class="or">NATIONAL-LEVEL HACKATHONS</span>
         </h3>
         <p style="font-size: 14.5px; color: var(--wh2); line-height: 1.75; margin-top: 14px;">
           Students in our programs get an exclusive opportunity to participate, collaborate, compete, and turn raw ideas
@@ -2332,7 +2823,7 @@
       </div>
 
       <div>
-        <a class="btn-p" href="#contact" onclick="selectDomainInForm('Innovation & Hackathons')">
+        <a class="btn-p" href="javascript:void(0)" onclick="openApplyModal('Innovation & Hackathons')">
           <span>Explore Innovation Opportunities</span>
           <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -2603,7 +3094,7 @@
         </h3>
         <p style="font-size: 14.5px; color: var(--wh2); line-height: 1.8;">
           To empower students and educational institutions through practical technology learning, deep industry
-          exposure, state-level innovation opportunities, and career-oriented programs that bridge the gap from campus to
+          exposure, national-level innovation opportunities, and career-oriented programs that bridge the gap from campus to
           industry.
         </p>
       </div>
@@ -2802,7 +3293,7 @@
         </div>
       </div>
 
-      <!-- Application Form -->
+        <!-- Application Form -->
       <div class="form-card rv" style="transition-delay: .1s;">
         <!-- Student vs Institution Toggle -->
         <div class="role-toggle">
@@ -2817,10 +3308,44 @@
         <form id="internshipForm" onsubmit="handleInternshipSubmit(event)">
           <input type="hidden" name="form_type" id="formTypeInput" value="Student Application">
 
+          <!-- Student Pricing & Inclusions Card -->
+          <div class="pricing-summary-card" id="studentPricingCard">
+            <div class="psc-header">
+              <div class="psc-title">
+                <span class="psc-badge"><i class="fa-solid fa-bolt"></i> Official Course Enrollment</span>
+                <h4>Industry Internship Program</h4>
+              </div>
+              <div class="psc-price">
+                <span class="psc-currency">₹</span>
+                <span class="psc-amount">3,999</span>
+                <span class="psc-period">/ course (all-inclusive)</span>
+              </div>
+            </div>
+            <div class="psc-features">
+              <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Live Mentor Guidance & 1-on-1 Code Reviews</div>
+              <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Real-World Production Capstone Project</div>
+              <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Official MahiiVerse Verified Internship Certificate</div>
+              <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Free Direct Entry to National-Level Hackathons</div>
+              <div class="psc-feat-item" style="grid-column: span 2;"><i class="fa-solid fa-check"></i> Exclusive Placement Pool & Hiring Network Access</div>
+            </div>
+            <div class="psc-subnote">
+              <i class="fa-solid fa-shield-halved"></i> 100% Secure Checkout via Razorpay • Instant Enrollment Confirmation
+            </div>
+          </div>
+
+          <!-- Institutional Info Card (Visible when Institution is selected) -->
+          <div class="inst-info-card" id="instInfoCard" style="display: none;">
+            <div class="iic-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div>
+              <h4>Institutional MoU & Department Cohorts</h4>
+              <p>Custom campus cohorts, department MoUs, customized syllabi, and faculty collaboration programs. Submit your requirement below for institutional scheduling and custom proposals.</p>
+            </div>
+          </div>
+
           <div class="f-row">
             <div class="fg">
               <label class="fl">Your Name *</label>
-              <input class="fi" type="text" name="name" placeholder="Full Name" required>
+              <input class="fi" type="text" name="name" id="nameInput" placeholder="Full Name" required>
             </div>
             <div class="fg">
               <label class="fl" id="orgLabel">College / Institute Name *</label>
@@ -2832,11 +3357,11 @@
           <div class="f-row">
             <div class="fg">
               <label class="fl">Email Address *</label>
-              <input class="fi" type="email" name="email" placeholder="you@example.com" required>
+              <input class="fi" type="email" name="email" id="emailInput" placeholder="you@example.com" required>
             </div>
             <div class="fg">
               <label class="fl">Phone Number *</label>
-              <input class="fi" type="tel" name="phone" placeholder="+91 00000 00000" required>
+              <input class="fi" type="tel" name="phone" id="phoneInput" placeholder="+91 00000 00000" required>
             </div>
           </div>
 
@@ -2844,21 +3369,21 @@
             <label class="fl" id="domainLabel">Select Domain / Program of Interest *</label>
             <select class="fs" name="domain_interest" id="domainSelect" required>
               <option value="" disabled selected>Select an area</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Mobile App Development">Mobile App Development</option>
-              <option value="Front-End Development">Front-End Development</option>
-              <option value="Machine Learning with Python">Machine Learning with Python</option>
-              <option value="Generative AI & LLM Applications">Generative AI & LLM Applications</option>
-              <option value="Agentic AI & Automation">Agentic AI & Automation</option>
-              <option value="AI Chatbot Development">AI Chatbot Development</option>
-              <option value="Data Analytics & Visualization">Data Analytics & Visualization</option>
-              <option value="Database Management & SQL">Database Management & SQL</option>
-              <option value="Embedded C">Embedded C</option>
-              <option value="PCB Design">PCB Design</option>
-              <option value="VLSI">VLSI</option>
-              <option value="EV Design">EV Design</option>
-              <option value="SolidWorks Product Design">SolidWorks Product Design</option>
-              <option value="Digital Marketing & Analytics">Digital Marketing & Analytics</option>
+              <option value="Web Development">Web Development (₹3,999)</option>
+              <option value="Mobile App Development">Mobile App Development (₹3,999)</option>
+              <option value="Front-End Development">Front-End Development (₹3,999)</option>
+              <option value="Machine Learning with Python">Machine Learning with Python (₹3,999)</option>
+              <option value="Generative AI & LLM Applications">Generative AI & LLM Applications (₹3,999)</option>
+              <option value="Agentic AI & Automation">Agentic AI & Automation (₹3,999)</option>
+              <option value="AI Chatbot Development">AI Chatbot Development (₹3,999)</option>
+              <option value="Data Analytics & Visualization">Data Analytics & Visualization (₹3,999)</option>
+              <option value="Database Management & SQL">Database Management & SQL (₹3,999)</option>
+              <option value="Embedded C">Embedded C (₹3,999)</option>
+              <option value="PCB Design">PCB Design (₹3,999)</option>
+              <option value="VLSI">VLSI (₹3,999)</option>
+              <option value="EV Design">EV Design (₹3,999)</option>
+              <option value="SolidWorks Product Design">SolidWorks Product Design (₹3,999)</option>
+              <option value="Digital Marketing & Analytics">Digital Marketing & Analytics (₹3,999)</option>
               <option value="Institutional MoU / Custom Program">Institutional MoU / Custom Program</option>
               <option value="Innovation & Hackathons">Innovation & Hackathons</option>
               <option value="Multiple / General Enquiry">Multiple / General Enquiry</option>
@@ -2873,28 +3398,256 @@
           </div>
 
           <button type="submit" class="f-submit" id="submitBtn">
-            <span>Submit Application / Enquiry →</span>
+            <span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>
           </button>
-          <p style="font-size: 11px; color: var(--wh3); margin-top: 12px; text-align: center;">
-            Direct response within 24 working hours. Your privacy is respected.
+
+          <!-- Payment Trust Strip -->
+          <div class="payment-trust-strip" id="studentTrustStrip">
+            <span class="trust-pill"><i class="fa-solid fa-shield-halved"></i> Razorpay Secured</span>
+            <span class="trust-pill"><i class="fa-brands fa-google-pay"></i> UPI (GPay / PhonePe / Paytm)</span>
+            <span class="trust-pill"><i class="fa-solid fa-credit-card"></i> Cards & NetBanking</span>
+            <span class="trust-pill"><i class="fa-solid fa-bolt"></i> Instant Confirmation</span>
+          </div>
+
+          <p style="font-size: 11px; color: var(--wh3); margin-top: 14px; text-align: center;">
+            Direct response and onboarding within 24 working hours. Your privacy and transaction are 100% secure.
           </p>
         </form>
 
-        <!-- Success Confirmation Box -->
-        <div class="success-box" id="successBox">
-          <i class="fa-solid fa-circle-check"></i>
-          <h4>Application Received!</h4>
-          <p>
-            Thank you for reaching out to MahiiVerse. A member of our academic & training team will get in touch with you
-            within 24 working hours with complete program details.
-          </p>
-          <div style="margin-top: 24px;">
-            <a class="btn-o" href="#programs" onclick="resetForm()">Submit Another Query</a>
+        <!-- Success Confirmation & Receipt Card -->
+        <div class="success-box payment-receipt-card" id="successBox">
+          <!-- Student Enrollment Receipt View -->
+          <div id="studentReceiptView">
+            <div class="receipt-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="receipt-badge">ENROLLMENT & PAYMENT CONFIRMED</div>
+            <h3 class="receipt-title">Welcome to MahiiVerse!</h3>
+            <p class="receipt-sub">
+              Your course payment of <strong>₹3,999</strong> was successful and your internship seat has been confirmed.
+            </p>
+
+            <div class="receipt-details">
+              <div class="rd-row">
+                <span class="rd-lbl">Razorpay Payment ID:</span>
+                <span class="rd-val highlight" id="recPaymentId">pay_XXXXXXXXXX</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">Candidate Name:</span>
+                <span class="rd-val" id="recName">-</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">Domain Track:</span>
+                <span class="rd-val" id="recDomain">-</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">College / Institution:</span>
+                <span class="rd-val" id="recCollege">-</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">Registered Email:</span>
+                <span class="rd-val" id="recEmail">-</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">Amount Paid:</span>
+                <span class="rd-val amount">₹3,999.00 (All Inclusive)</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-lbl">National Hackathon Entry:</span>
+                <span class="rd-val or-text">Free Guaranteed Access</span>
+              </div>
+            </div>
+
+            <div class="receipt-note">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <span>Our academic coordinator will send your onboarding packet, LMS credentials, and mentor orientation details to your registered email within 24 working hours.</span>
+            </div>
+
+            <div class="receipt-actions">
+              <button type="button" class="btn-p" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Print / Save Receipt
+              </button>
+              <button type="button" class="btn-o" onclick="resetForm()">
+                Submit Another Application
+              </button>
+            </div>
+          </div>
+
+          <!-- Institutional Proposal Success View -->
+          <div id="instSuccessView" style="display: none; text-align: center;">
+            <i class="fa-solid fa-circle-check" style="font-size: 48px; color: var(--or); margin-bottom: 20px;"></i>
+            <h4 style="font-size: 24px; margin-bottom: 10px;">Proposal Received!</h4>
+            <p style="color: var(--wh2); font-size: 14px; line-height: 1.7; max-width: 440px; margin: 0 auto;">
+              Thank you for reaching out to MahiiVerse. A member of our institutional partnerships team will get in touch with your department within 24 working hours.
+            </p>
+            <div style="margin-top: 24px;">
+              <a class="btn-o" href="#programs" onclick="resetForm()">Submit Another Query</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- APPLICATION & PAYMENT POPUP MODAL -->
+  <div id="applyModal" class="mv-modal" onclick="handleModalBackdropClick(event)">
+    <div class="mv-modal-dialog">
+      <button type="button" class="mv-modal-close" onclick="closeApplyModal()" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="mv-modal-header">
+        <div class="label">MAHIIVERSE INTERNSHIP</div>
+        <h3>APPLY & ENROLL NOW</h3>
+        <p>Complete your application and secure your seat with instant Razorpay checkout.</p>
+      </div>
+
+      <!-- Course Fee & Inclusions Card in Modal -->
+      <div class="pricing-summary-card">
+        <div class="psc-header">
+          <div class="psc-title">
+            <span class="psc-badge"><i class="fa-solid fa-bolt"></i> Official Course Enrollment</span>
+            <h4 id="modalCourseTitle">Industry Internship Program</h4>
+          </div>
+          <div class="psc-price">
+            <span class="psc-currency">₹</span>
+            <span class="psc-amount">3,999</span>
+            <span class="psc-period">/ course (all-inclusive)</span>
+          </div>
+        </div>
+        <div class="psc-features">
+          <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Live Mentor Guidance & 1-on-1 Code Reviews</div>
+          <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Real-World Production Capstone Project</div>
+          <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Official MahiiVerse Verified Certificate</div>
+          <div class="psc-feat-item"><i class="fa-solid fa-check"></i> Free National-Level Hackathon Entry</div>
+          <div class="psc-feat-item" style="grid-column: span 2;"><i class="fa-solid fa-check"></i> Exclusive Placement Pool & Hiring Network Access</div>
+        </div>
+        <div class="psc-subnote">
+          <i class="fa-solid fa-shield-halved"></i> 100% Secure Checkout via Razorpay • Instant Confirmation
+        </div>
+      </div>
+
+      <!-- Application Form in Modal -->
+      <form id="modalInternshipForm" onsubmit="handleModalSubmit(event)">
+        <input type="hidden" name="form_type" value="Student Application (Quick Modal)">
+
+        <div class="f-row">
+          <div class="fg">
+            <label class="fl">Your Name *</label>
+            <input class="fi" type="text" name="name" id="modalNameInput" placeholder="Full Name" required>
+          </div>
+          <div class="fg">
+            <label class="fl">College / Institute Name *</label>
+            <input class="fi" type="text" name="college_or_org" id="modalOrgInput" placeholder="Name of your college" required>
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="fg">
+            <label class="fl">Email Address *</label>
+            <input class="fi" type="email" name="email" id="modalEmailInput" placeholder="you@example.com" required>
+          </div>
+          <div class="fg">
+            <label class="fl">Phone Number *</label>
+            <input class="fi" type="tel" name="phone" id="modalPhoneInput" placeholder="+91 00000 00000" required>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Select Domain / Program Track *</label>
+          <select class="fs" name="domain_interest" id="modalDomainSelect" required onchange="updateModalDomainTitle(this.value)">
+            <option value="" disabled selected>Select an area</option>
+            <option value="Web Development">Web Development (₹3,999)</option>
+            <option value="Mobile App Development">Mobile App Development (₹3,999)</option>
+            <option value="Front-End Development">Front-End Development (₹3,999)</option>
+            <option value="Machine Learning with Python">Machine Learning with Python (₹3,999)</option>
+            <option value="Generative AI & LLM Applications">Generative AI & LLM Applications (₹3,999)</option>
+            <option value="Agentic AI & Automation">Agentic AI & Automation (₹3,999)</option>
+            <option value="AI Chatbot Development">AI Chatbot Development (₹3,999)</option>
+            <option value="Data Analytics & Visualization">Data Analytics & Visualization (₹3,999)</option>
+            <option value="Database Management & SQL">Database Management & SQL (₹3,999)</option>
+            <option value="Embedded C">Embedded C (₹3,999)</option>
+            <option value="PCB Design">PCB Design (₹3,999)</option>
+            <option value="VLSI">VLSI (₹3,999)</option>
+            <option value="EV Design">EV Design (₹3,999)</option>
+            <option value="SolidWorks Product Design">SolidWorks Product Design (₹3,999)</option>
+            <option value="Digital Marketing & Analytics">Digital Marketing & Analytics (₹3,999)</option>
+            <option value="Innovation & Hackathons">Innovation & Hackathons (₹3,999)</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Additional Details / Learning Goals *</label>
+          <textarea class="ft" name="message" id="modalMessageInput" style="min-height: 80px;"
+            placeholder="Tell us about your target semester, learning objectives, or prior experience..." required></textarea>
+        </div>
+
+        <button type="submit" class="f-submit" id="modalSubmitBtn">
+          <span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>
+        </button>
+
+        <div class="payment-trust-strip">
+          <span class="trust-pill"><i class="fa-solid fa-shield-halved"></i> Razorpay Secured</span>
+          <span class="trust-pill"><i class="fa-brands fa-google-pay"></i> UPI (GPay / PhonePe / Paytm)</span>
+          <span class="trust-pill"><i class="fa-solid fa-credit-card"></i> Cards & NetBanking</span>
+          <span class="trust-pill"><i class="fa-solid fa-bolt"></i> Instant Confirmation</span>
+        </div>
+      </form>
+
+      <!-- Modal Receipt View -->
+      <div class="success-box payment-receipt-card" id="modalSuccessBox" style="display: none; padding: 10px 0 !important; background: transparent; border: none;">
+        <div class="receipt-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="receipt-badge">ENROLLMENT & PAYMENT CONFIRMED</div>
+        <h3 class="receipt-title">Welcome to MahiiVerse!</h3>
+        <p class="receipt-sub">
+          Your course payment of <strong>₹3,999</strong> was successful and your internship seat has been confirmed.
+        </p>
+
+        <div class="receipt-details">
+          <div class="rd-row">
+            <span class="rd-lbl">Razorpay Payment ID:</span>
+            <span class="rd-val highlight" id="modalRecPaymentId">pay_XXXXXXXXXX</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">Candidate Name:</span>
+            <span class="rd-val" id="modalRecName">-</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">Domain Track:</span>
+            <span class="rd-val" id="modalRecDomain">-</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">College / Institution:</span>
+            <span class="rd-val" id="modalRecCollege">-</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">Registered Email:</span>
+            <span class="rd-val" id="modalRecEmail">-</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">Amount Paid:</span>
+            <span class="rd-val amount">₹3,999.00 (All Inclusive)</span>
+          </div>
+          <div class="rd-row">
+            <span class="rd-lbl">National Hackathon Entry:</span>
+            <span class="rd-val or-text">Free Guaranteed Access</span>
+          </div>
+        </div>
+
+        <div class="receipt-note">
+          <i class="fa-solid fa-envelope-open-text"></i>
+          <span>Our academic coordinator will send your onboarding packet, LMS credentials, and mentor orientation details to your registered email within 24 working hours.</span>
+        </div>
+
+        <div class="receipt-actions">
+          <button type="button" class="btn-p" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Print / Save Receipt
+          </button>
+          <button type="button" class="btn-o" onclick="closeApplyModal()">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -3001,7 +3754,186 @@
       });
     }
 
-    // Role Toggle (Student vs Institution)
+    // Razorpay Configuration
+    // Active Razorpay Key ID
+    const RAZORPAY_KEY_ID = "rzp_test_Tl5CTY0d4MjhUp";
+    const COURSE_FEE_INR = 3999;
+
+    // Open Application & Payment Popup Modal
+    function openApplyModal(domainName) {
+      const modal = document.getElementById('applyModal');
+      const select = document.getElementById('modalDomainSelect');
+      const form = document.getElementById('modalInternshipForm');
+      const successBox = document.getElementById('modalSuccessBox');
+      const btn = document.getElementById('modalSubmitBtn');
+
+      if (form) form.style.display = 'block';
+      if (successBox) successBox.style.display = 'none';
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>';
+      }
+
+      if (select && domainName) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.toLowerCase().includes(domainName.toLowerCase()) ||
+            select.options[i].value.toLowerCase().includes(domainName.toLowerCase())) {
+            select.selectedIndex = i;
+            updateModalDomainTitle(select.options[i].value);
+            break;
+          }
+        }
+      }
+
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Close Modal
+    function closeApplyModal() {
+      const modal = document.getElementById('applyModal');
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close on backdrop click
+    function handleModalBackdropClick(e) {
+      if (e.target && e.target.id === 'applyModal') {
+        closeApplyModal();
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeApplyModal();
+    });
+
+    // Update Modal Title when domain changes
+    function updateModalDomainTitle(domainVal) {
+      const title = document.getElementById('modalCourseTitle');
+      if (title && domainVal) {
+        title.textContent = domainVal + ' Track';
+      }
+    }
+
+    // Handle Modal Application & Razorpay Checkout
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('modalInternshipForm');
+      const btn = document.getElementById('modalSubmitBtn');
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      if (typeof Razorpay === 'undefined') {
+        alert("Razorpay checkout is loading. Please check your internet connection or try again in a moment.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Checkout...</span>';
+
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: COURSE_FEE_INR * 100, // 399900 paise = ₹3,999
+        currency: "INR",
+        name: "MahiiVerse",
+        description: "Internship Course - " + (data.domain_interest || "Technology Track"),
+        image: "logo.png",
+        prefill: {
+          name: data.name || "",
+          email: data.email || "",
+          contact: data.phone || ""
+        },
+        notes: {
+          student_name: data.name,
+          college: data.college_or_org,
+          domain: data.domain_interest,
+          course_fee: "INR " + COURSE_FEE_INR,
+          program: "MahiiVerse Industry Internship Course"
+        },
+        theme: {
+          color: "#FF4D00"
+        },
+        modal: {
+          ondismiss: function () {
+            btn.disabled = false;
+            btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>';
+          }
+        },
+        handler: function (response) {
+          data.payment_id = response.razorpay_payment_id;
+          data.payment_status = "PAID";
+          data.course_fee = "₹3,999";
+          data.paid_at = new Date().toISOString();
+
+          btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Confirming Enrollment...</span>';
+          sendModalApplicationToBackend(data, response.razorpay_payment_id);
+        }
+      };
+
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          console.error(response.error);
+          alert("Payment failed: " + (response.error.description || "Please check your payment method or try another option."));
+          btn.disabled = false;
+          btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>';
+        });
+        rzp.open();
+      } catch (err) {
+        console.error("Razorpay error:", err);
+        if (RAZORPAY_KEY_ID.includes('your_key_here')) {
+          alert("Notice: Razorpay Key ID is placeholder. Displaying receipt preview.");
+          const demoPaymentId = "pay_TEST" + Math.floor(100000000 + Math.random() * 900000000);
+          data.payment_id = demoPaymentId;
+          data.payment_status = "TEST_MODE_PAID";
+          data.course_fee = "₹3,999";
+          sendModalApplicationToBackend(data, demoPaymentId);
+          return;
+        }
+        alert("Could not initialize Razorpay: " + err.message);
+        btn.disabled = false;
+        btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>';
+      }
+    }
+
+    function sendModalApplicationToBackend(data, paymentId) {
+      const form = document.getElementById('modalInternshipForm');
+      const successBox = document.getElementById('modalSuccessBox');
+
+      fetch("https://formsubmit.co/ajax/enquiry.mahiiverse@gmail.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .catch(err => {
+          console.warn("FormSubmit notice:", err);
+        })
+        .finally(() => {
+          form.style.display = 'none';
+
+          if (paymentId) {
+            document.getElementById('modalRecPaymentId').textContent = paymentId;
+            document.getElementById('modalRecName').textContent = data.name || '-';
+            document.getElementById('modalRecDomain').textContent = data.domain_interest || '-';
+            document.getElementById('modalRecCollege').textContent = data.college_or_org || '-';
+            document.getElementById('modalRecEmail').textContent = data.email || '-';
+          }
+
+          successBox.style.display = 'block';
+        });
+    }
+
+    // Role Toggle (Student vs Institution for bottom section form)
     function setRoleToggle(role) {
       const btnStudent = document.getElementById('btnStudent');
       const btnInstitution = document.getElementById('btnInstitution');
@@ -3009,6 +3941,10 @@
       const orgLabel = document.getElementById('orgLabel');
       const orgInput = document.getElementById('orgInput');
       const messageInput = document.getElementById('messageInput');
+      const studentPricingCard = document.getElementById('studentPricingCard');
+      const instInfoCard = document.getElementById('instInfoCard');
+      const studentTrustStrip = document.getElementById('studentTrustStrip');
+      const submitBtn = document.getElementById('submitBtn');
 
       if (role === 'institution') {
         btnInstitution.classList.add('active');
@@ -3017,6 +3953,10 @@
         orgLabel.textContent = 'Institution / University Name *';
         orgInput.placeholder = 'e.g., Engineering College, Department or University';
         messageInput.placeholder = 'Describe your department requirements, student capacity, target semester, and desired program format (Internship, Hackathon, MoU)...';
+        if (studentPricingCard) studentPricingCard.style.display = 'none';
+        if (instInfoCard) instInfoCard.style.display = 'flex';
+        if (studentTrustStrip) studentTrustStrip.style.display = 'none';
+        if (submitBtn) submitBtn.innerHTML = '<span>Submit Institutional Proposal →</span>';
       } else {
         btnStudent.classList.add('active');
         btnInstitution.classList.remove('active');
@@ -3024,6 +3964,10 @@
         orgLabel.textContent = 'College / Institute Name *';
         orgInput.placeholder = 'Name of your college / university';
         messageInput.placeholder = 'Tell us about your learning goals, current year/semester, or internship requirements...';
+        if (studentPricingCard) studentPricingCard.style.display = 'block';
+        if (instInfoCard) instInfoCard.style.display = 'none';
+        if (studentTrustStrip) studentTrustStrip.style.display = 'flex';
+        if (submitBtn) submitBtn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>';
       }
     }
 
@@ -3053,18 +3997,103 @@
       });
     });
 
-    // Form Submission
+    // Form Submission & Razorpay Integration for Bottom Section Form
     function handleInternshipSubmit(e) {
       e.preventDefault();
       const form = document.getElementById('internshipForm');
       const btn = document.getElementById('submitBtn');
-      const successBox = document.getElementById('successBox');
-
-      btn.disabled = true;
-      btn.innerHTML = '<span>Submitting Details...</span>';
+      const formType = document.getElementById('formTypeInput').value;
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+
+      // Institutional Submission (Free Proposal Inquiry)
+      if (formType === 'Institutional Partnership Proposal') {
+        btn.disabled = true;
+        btn.innerHTML = '<span>Submitting Proposal...</span>';
+        data.application_category = "Institutional Partnership";
+        sendApplicationToBackend(data, null);
+        return;
+      }
+
+      // Student Submission (Course Payment via Razorpay)
+      if (typeof Razorpay === 'undefined') {
+        alert("Razorpay checkout is loading. Please check your internet connection or try again in a moment.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Checkout...</span>';
+
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: COURSE_FEE_INR * 100, // 399900 paise = ₹3,999
+        currency: "INR",
+        name: "MahiiVerse",
+        description: "Internship Course - " + (data.domain_interest || "Technology Track"),
+        image: "logo.png",
+        prefill: {
+          name: data.name || "",
+          email: data.email || "",
+          contact: data.phone || ""
+        },
+        notes: {
+          student_name: data.name,
+          college: data.college_or_org,
+          domain: data.domain_interest,
+          course_fee: "INR " + COURSE_FEE_INR,
+          program: "MahiiVerse Industry Internship Course"
+        },
+        theme: {
+          color: "#FF4D00"
+        },
+        modal: {
+          ondismiss: function () {
+            btn.disabled = false;
+            btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>';
+          }
+        },
+        handler: function (response) {
+          // Payment Successful!
+          data.payment_id = response.razorpay_payment_id;
+          data.payment_status = "PAID";
+          data.course_fee = "₹3,999";
+          data.paid_at = new Date().toISOString();
+
+          btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Confirming Enrollment...</span>';
+          sendApplicationToBackend(data, response.razorpay_payment_id);
+        }
+      };
+
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          console.error(response.error);
+          alert("Payment failed: " + (response.error.description || "Please check your payment method or try another option."));
+          btn.disabled = false;
+          btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>';
+        });
+        rzp.open();
+      } catch (err) {
+        console.error("Razorpay error:", err);
+        if (RAZORPAY_KEY_ID.includes('your_key_here')) {
+          alert("Notice: Razorpay Key ID is placeholder. Displaying receipt preview.");
+          const demoPaymentId = "pay_TEST" + Math.floor(100000000 + Math.random() * 900000000);
+          data.payment_id = demoPaymentId;
+          data.payment_status = "TEST_MODE_PAID";
+          data.course_fee = "₹3,999";
+          sendApplicationToBackend(data, demoPaymentId);
+          return;
+        }
+        alert("Could not initialize Razorpay: " + err.message);
+        btn.disabled = false;
+        btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>';
+      }
+    }
+
+    function sendApplicationToBackend(data, paymentId) {
+      const form = document.getElementById('internshipForm');
+      const successBox = document.getElementById('successBox');
 
       fetch("https://formsubmit.co/ajax/enquiry.mahiiverse@gmail.com", {
         method: "POST",
@@ -3075,14 +4104,27 @@
         body: JSON.stringify(data)
       })
         .then(res => res.json())
-        .then(result => {
-          form.style.display = 'none';
-          successBox.classList.add('show');
-        })
         .catch(err => {
-          console.error(err);
-          // Show success anyway if network or CORS blips, or allow retry
+          console.warn("FormSubmit notice:", err);
+        })
+        .finally(() => {
           form.style.display = 'none';
+
+          if (paymentId) {
+            // Render student receipt
+            document.getElementById('recPaymentId').textContent = paymentId;
+            document.getElementById('recName').textContent = data.name || '-';
+            document.getElementById('recDomain').textContent = data.domain_interest || '-';
+            document.getElementById('recCollege').textContent = data.college_or_org || '-';
+            document.getElementById('recEmail').textContent = data.email || '-';
+            document.getElementById('studentReceiptView').style.display = 'block';
+            document.getElementById('instSuccessView').style.display = 'none';
+          } else {
+            // Render institutional confirmation
+            document.getElementById('studentReceiptView').style.display = 'none';
+            document.getElementById('instSuccessView').style.display = 'block';
+          }
+
           successBox.classList.add('show');
         });
     }
@@ -3090,12 +4132,10 @@
     function resetForm() {
       const form = document.getElementById('internshipForm');
       const successBox = document.getElementById('successBox');
-      const btn = document.getElementById('submitBtn');
       form.reset();
       form.style.display = 'block';
       successBox.classList.remove('show');
-      btn.disabled = false;
-      btn.innerHTML = '<span>Submit Application / Enquiry →</span>';
+      setRoleToggle('student');
     }
 
     // Keep URL strictly /internship during internal in-page navigation
