@@ -3754,30 +3754,9 @@
       });
     }
 
-    // Razorpay Configuration
-    let RAZORPAY_KEY_ID = "";
+    // Razorpay Configuration (Production Live)
+    const RAZORPAY_KEY_ID = "rzp_live_Tl5RPPfqg6raQE";
     const COURSE_FEE_INR = 3999;
-
-    // Fetch live Key ID from Vercel Serverless Function (loads from Vercel environment variable)
-    async function getActiveRazorpayKey() {
-      if (RAZORPAY_KEY_ID && RAZORPAY_KEY_ID.trim().length > 0) {
-        return RAZORPAY_KEY_ID;
-      }
-      try {
-        const res = await fetch('/api/get-razorpay-key');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.keyId && data.keyId.trim().length > 0) {
-            RAZORPAY_KEY_ID = data.keyId.trim();
-            return RAZORPAY_KEY_ID;
-          }
-        }
-      } catch (err) {
-        console.warn('Could not load Razorpay key from /api/get-razorpay-key', err);
-      }
-      return RAZORPAY_KEY_ID;
-    }
-    getActiveRazorpayKey();
 
     // Open Application & Payment Popup Modal
     function openApplyModal(domainName) {
@@ -3857,17 +3836,8 @@
       btn.disabled = true;
       btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Checkout...</span>';
 
-      const activeKey = await getActiveRazorpayKey();
-
-      if (!activeKey) {
-        alert("Unable to initialize payment gateway. Please ensure RAZORPAY_KEY_ID is configured in your environment or refresh the page.");
-        btn.disabled = false;
-        btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Enroll Now →</span>';
-        return;
-      }
-
       const options = {
-        key: activeKey,
+        key: RAZORPAY_KEY_ID,
         amount: COURSE_FEE_INR * 100, // 399900 paise = ₹3,999
         currency: "INR",
         name: "MahiiVerse",
@@ -4054,17 +4024,8 @@
       btn.disabled = true;
       btn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Checkout...</span>';
 
-      const activeKey = await getActiveRazorpayKey();
-
-      if (!activeKey) {
-        alert("Unable to initialize payment gateway. Please ensure RAZORPAY_KEY_ID is configured in your environment or refresh the page.");
-        btn.disabled = false;
-        btn.innerHTML = '<span><i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay ₹3,999 & Complete Application →</span>';
-        return;
-      }
-
       const options = {
-        key: activeKey,
+        key: RAZORPAY_KEY_ID,
         amount: COURSE_FEE_INR * 100, // 399900 paise = ₹3,999
         currency: "INR",
         name: "MahiiVerse",
